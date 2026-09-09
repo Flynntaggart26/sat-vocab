@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500 SAT Words in 20 Days</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a2e;
+            --bg-card-hover: #1f1f35;
+            --border: #2a2a4a;
+            --text-primary: #f0f0f5;
+            --text-secondary: #a0a0c0;
+            --accent: #6c63ff;
+            --accent-light: #8b83ff;
+            --accent-glow: rgba(108,99,255,0.3);
+            --green: #22c55e;
+            --green-glow: rgba(34,197,94,0.3);
+            --orange: #f59e0b;
+            --red: #ef4444;
+            --gradient-1: linear-gradient(135deg, #6c63ff, #a78bfa);
+            --gradient-2: linear-gradient(135deg, #22c55e, #4ade80);
+            --gradient-3: linear-gradient(135deg, #f59e0b, #fbbf24);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); min-height: 100vh; }
+
+        /* HERO */
+        .hero {
+            position: relative;
+            padding: 5rem 2rem 4rem;
+            text-align: center;
+            overflow: hidden;
+            background: radial-gradient(ellipse at 50% 0%, rgba(108,99,255,0.15) 0%, transparent 60%);
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-conic-gradient(from 0deg, transparent 0deg 8deg, rgba(108,99,255,0.03) 8deg 10deg);
+            animation: rotate 120s linear infinite;
+        }
+        @keyframes rotate { to { transform: rotate(360deg); } }
+        .hero-content { position: relative; z-index: 1; }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+        .hero p { font-size: 1.2rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+
+        /* STATS */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem 2.5rem;
+            text-align: center;
+            min-width: 140px;
+        }
+        .stat-card .num {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-card .label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 0.3rem;
+        }
+
+        /* PROGRESS */
+        .progress-section {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            padding: 0 1rem;
+        }
+        .progress-bar {
+            background: var(--bg-card);
+            border-radius: 12px;
+            height: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-1);
+            border-radius: 12px;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.8rem;
+        }
+        .progress-text { color: var(--text-secondary); font-size: 0.9rem; }
+        .progress-pct { color: var(--accent-light); font-weight: 700; font-size: 1.1rem; }
+
+        /* NAVIGATION */
+        .day-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            padding: 0 1rem;
+        }
+        .day-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 0.6rem 1.2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .day-btn:hover { border-color: var(--accent); color: var(--accent-light); background: rgba(108,99,255,0.1); }
+        .day-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); box-shadow: 0 0 20px var(--accent-glow); }
+        .day-btn.done { background: rgba(34,197,94,0.15); border-color: var(--green); color: var(--green); }
+
+        /* DAY SECTION */
+        .day-section {
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            padding: 0 1rem;
+        }
+        .day-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .day-header h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+        .day-header h2 span {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .day-counter {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        .day-counter strong { color: var(--accent-light); }
+
+        /* WORD CARDS */
+        .word-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.8rem;
+        }
+        .word-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.2rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .word-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .word-card:hover { border-color: var(--accent); background: var(--bg-card-hover); }
+        .word-card:hover::before { opacity: 1; }
+        .word-card.mastered { border-color: var(--green); }
+        .word-card.mastered::before { background: var(--gradient-2); opacity: 1; }
+
+        .word-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .word-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .word-pos {
+            font-size: 0.75rem;
+            background: rgba(108,99,255,0.2);
+            color: var(--accent-light);
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+        .word-meaning {
+            margin-top: 0.6rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .word-example {
+            display: none;
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.88rem;
+            color: #7c7ca0;
+            font-style: italic;
+        }
+        .word-card.open .word-example { display: block; }
+        .word-card .master-btn {
+            background: none;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+        .word-card .master-btn:hover { border-color: var(--green); }
+        .word-card.mastered .master-btn { background: var(--green); border-color: var(--green); }
+        .word-card.mastered .master-btn::after { content: "✓"; color: #fff; font-weight: bold; font-size: 0.9rem; }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        footer a { color: var(--accent-light); text-decoration: none; }
+
+        /* SCROLL */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+        /* ANIMATION */
+        .word-card { animation: fadeUp 0.4s ease-out both; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <div class="hero-content">
+        <h1>500 SAT Words</h1>
+        <p>Master essential SAT vocabulary in 20 days. 25 words per day. Click any word to see its example sentence.</p>
+        <div class="stats">
+            <div class="stat-card"><div class="num">500</div><div class="label">Words</div></div>
+            <div class="stat-card"><div class="num">20</div><div class="label">Days</div></div>
+            <div class="stat-card"><div class="num">25</div><div class="label">Per Day</div></div>
+        </div>
+    </div>
+</div>
+
+<div class="progress-section">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    <div class="progress-info">
+        <span class="progress-text" id="progressText">0 / 500 words mastered</span>
+        <span class="progress-pct" id="progressPct">0%</span>
+    </div>
+</div>
+
+<div class="day-nav" id="dayNav"></div>
+<div id="app"></div>
+
+<footer>
+    <p>500 SAT Words in 20 Days &mdash; Built for focused study</p>
+</footer>
+
+<script>
+const WORDS = {
+    1: [
+        { word: "Aberrant", pos: "adj", meaning: "Departing from an accepted standard; abnormal.", example: "The aberrant behavior of the student drew the teacher's attention." },
+        { word: "Abstract", pos: "adj", meaning: "Existing in thought or as an idea but not having a physical existence.", example: "The concept of justice is abstract and can be interpreted in many ways." },
+        { word: "Acclaim", pos: "n/v", meaning: "Enthusiastic public praise; to praise enthusiastically.", example: "The film received widespread acclaim from critics and audiences alike." },
+        { word: "Acumen", pos: "n", meaning: "The ability to make good judgments and quick decisions.", example: "Her business acumen helped her build a successful company from scratch." },
+        { word: "Admonish", pos: "v", meaning: "To warn or reprimand someone firmly.", example: "The teacher admonished the students for their disruptive behavior." },
+        { word: "Aesthetic", pos: "adj/n", meaning: "Concerned with beauty or the appreciation of beauty.", example: "The aesthetic appeal of the painting captivated everyone in the gallery." },
+        { word: "Affable", pos: "adj", meaning: "Friendly, good-natured, and easy to talk to.", example: "The affable host made every guest feel welcome at the party." },
+        { word: "Aggravate", pos: "v", meaning: "To make a problem or situation worse.", example: "Scratching the rash will only aggravate the irritation." },
+        { word: "Alacrity", pos: "n", meaning: "Brisk and cheerful readiness.", example: "She accepted the challenge with alacrity, eager to prove herself." },
+        { word: "Amalgamate", pos: "v", meaning: "To combine or unite to form one organization or structure.", example: "The two companies decided to amalgamate to increase their market share." },
+        { word: "Ambiguous", pos: "adj", meaning: "Open to more than one interpretation; not having one obvious meaning.", example: "The ambiguous statement left everyone confused about the actual plan." },
+        { word: "Ameliorate", pos: "v", meaning: "To make something bad or unsatisfactory better.", example: "The new policy was designed to ameliorate working conditions for employees." },
+        { word: "Amiable", pos: "adj", meaning: "Having or displaying a friendly and pleasant manner.", example: "Her amiable personality made her popular among her colleagues." },
+        { word: "Ample", pos: "adj", meaning: "Enough or more than enough; plentiful.", example: "There was ample food and drink for all the guests at the celebration." },
+        { word: "Anachronism", pos: "n", meaning: "A thing belonging to a period other than that in which it exists.", example: "The horse-drawn carriage in the modern city was an anachronism." },
+        { word: "Analogy", pos: "n", meaning: "A comparison between two things for the purpose of explanation.", example: "She drew an analogy between the human brain and a computer." },
+        { word: "Anecdote", pos: "n", meaning: "A short, amusing, or interesting story about a real incident or person.", example: "He shared a funny anecdote about his childhood to lighten the mood." },
+        { word: "Animosity", pos: "n", meaning: "Strong hostility or ill feeling.", example: "The animosity between the two rivals was evident to everyone." },
+        { word: "Antithesis", pos: "n", meaning: "A person or thing that is the direct opposite of someone or something else.", example: "His calm demeanor was the antithesis of her anxious nature." },
+        { word: "Apathy", pos: "n", meaning: "Lack of interest, enthusiasm, or concern.", example: "Voter apathy led to a historically low turnout in the election." },
+        { word: "Appease", pos: "v", meaning: "To bring to a state of peace or calm; to pacify.", example: "The manager tried to appease the angry customers with a full refund." },
+        { word: "Arcane", pos: "adj", meaning: "Understood by few; mysterious or secret.", example: "The arcane rituals of the ancient civilization fascinated archaeologists." },
+        { word: "Arduous", pos: "adj", meaning: "Involving or requiring strenuous effort; difficult and tiring.", example: "The arduous hike up the mountain took over eight hours." },
+        { word: "Articulate", pos: "adj/v", meaning: "Having or showing the ability to speak fluently and coherently.", example: "She was an articulate speaker who captivated her audience." },
+        { word: "Assertive", pos: "adj", meaning: "Having or showing a confident and forceful personality.", example: "An assertive approach is often needed to succeed in the business world." }
+    ],
+    2: [
+        { word: "Austere", pos: "adj", meaning: "Severe or strict in manner, attitude, or appearance.", example: "The austere decor of the room reflected the owner's minimalist taste." },
+        { word: "Aversion", pos: "n", meaning: "A strong dislike or disinclination.", example: "She had a strong aversion to public speaking and avoided it whenever possible." },
+        { word: "Belie", pos: "v", meaning: "To fail to give a true notion or impression of; to contradict.", example: "Her calm expression belied the anxiety she felt inside." },
+        { word: "Bellicose", pos: "adj", meaning: "Demonstrating aggression and willingness to fight.", example: "The bellicose tone of the speech escalated tensions between the two nations." },
+        { word: "Benign", pos: "adj", meaning: "Gentle, kindly, or not harmful.", example: "The doctor assured her that the tumor was benign and would not spread." },
+        { word: "Bewilder", pos: "v", meaning: "To cause someone to become confused or perplexed.", example: "The complex instructions bewilder anyone who tries to assemble the furniture." },
+        { word: "Bizarre", pos: "adj", meaning: "Very strange or unusual.", example: "The bizarre dream left him wondering about its hidden meaning." },
+        { word: "Blasphemous", pos: "adj", meaning: "Impious or irreverent toward something sacred.", example: "The blasphemous remarks offended the deeply religious community." },
+        { word: "Bombastic", pos: "adj", meaning: "High-sounding but with little meaning; inflated.", example: "The politician's bombastic speech was full of grand promises but lacked substance." },
+        { word: "Brash", pos: "adj", meaning: "Self-assertive or arrogant in an unpleasant way.", example: "His brash attitude alienated many of his coworkers." },
+        { word: "Brazen", pos: "adj", meaning: "Bold and without shame.", example: "The brazen theft occurred in broad daylight in front of many witnesses." },
+        { word: "Brevity", pos: "n", meaning: "Concise and exact use of words; shortness of time.", example: "The speaker was known for the brevity and clarity of his presentations." },
+        { word: "Broach", pos: "v", meaning: "To raise a sensitive or difficult subject for discussion.", example: "She waited for the right moment to broach the topic of a raise." },
+        { word: "Bulwark", pos: "n", meaning: "A defensive wall; a person or thing that provides protection.", example: "Freedom of the press serves as a bulwark against government tyranny." },
+        { word: "Buoyant", pos: "adj", meaning: "Cheerful and optimistic; able to float.", example: "Despite the setback, she maintained a buoyant attitude throughout the day." },
+        { word: "Cacophony", pos: "n", meaning: "A harsh, discordant mixture of sounds.", example: "The cacophony of car horns and construction noise made it impossible to concentrate." },
+        { word: "Cajole", pos: "v", meaning: "To persuade someone by sustained coaxing or flattery.", example: "She managed to cajole her brother into helping with the chores." },
+        { word: "Caustic", pos: "adj", meaning: "Sarcastic in a scathing and bitter way; able to burn.", example: "His caustic remarks about the proposal wounded the feelings of the team." },
+        { word: "Censure", pos: "v/n", meaning: "To express severe disapproval of someone or something formally.", example: "The committee voted to censure the senator for unethical behavior." },
+        { word: "Cerebral", pos: "adj", meaning: "Of or relating to the brain; intellectual rather than emotional.", example: "The cerebral film challenged viewers to think deeply about its themes." },
+        { word: "Charlatan", pos: "n", meaning: "A person falsely claiming to have special knowledge or skills.", example: "The so-called miracle healer was exposed as a charlatan and a fraud." },
+        { word: "Circumlocution", pos: "n", meaning: "The use of many words where fewer would do; roundabout language.", example: "His circumlocution made it difficult to understand his actual point." },
+        { word: "Clandestine", pos: "adj", meaning: "Kept secret or done secretively.", example: "The clandestine meeting between the diplomats was not reported by the media." },
+        { word: "Clemency", pos: "n", meaning: "Mercy; lenience.", example: "The governor granted clemency to the prisoner after reviewing the case." },
+        { word: "Coalesce", pos: "v", meaning: "To come together and form one mass or whole.", example: "The various protest groups coalesced into a single powerful movement." }
+    ],
+    3: [
+        { word: "Cogent", pos: "adj", meaning: "Clear, logical, and convincing.", example: "She presented a cogent argument that swayed the opinions of the jury." },
+        { word: "Commensurate", pos: "adj", meaning: "Corresponding in size or degree; in proportion.", example: "His salary was commensurate with his level of experience and expertise." },
+        { word: "Compelling", pos: "adj", meaning: "Evoking interest, attention, or admiration in a powerfully irresistible way.", example: "The compelling documentary shed light on the environmental crisis." },
+        { word: "Complacent", pos: "adj", meaning: "Showing smug or uncritical satisfaction with oneself or one's achievements.", example: "The team became complacent after their early success and eventually lost." },
+        { word: "Compliant", pos: "adj", meaning: "Inclined to agree with others or obey rules; meeting standards.", example: "The factory was fully compliant with all environmental regulations." },
+        { word: "Conciliatory", pos: "adj", meaning: "Intended or likely to placate or pacify.", example: "Her conciliatory tone helped defuse the tense negotiation." },
+        { word: "Condone", pos: "v", meaning: "To accept and allow behavior that is considered wrong to continue.", example: "The school does not condone cheating of any kind." },
+        { word: "Conducive", pos: "adj", meaning: "Making a certain situation or outcome likely or possible.", example: "A quiet environment is conducive to productive studying." },
+        { word: "Conjecture", pos: "n/v", meaning: "An opinion or conclusion formed on the basis of incomplete information.", example: "Without hard evidence, any explanation remains mere conjecture." },
+        { word: "Connive", pos: "v", meaning: "To secretly allow wrongdoing to occur; to conspire.", example: "The officials were accused of conniving to cover up the scandal." },
+        { word: "Consecrate", pos: "v", meaning: "To make or declare something sacred; to dedicate formally.", example: "The bishop consecrated the new church in a solemn ceremony." },
+        { word: "Conspicuous", pos: "adj", meaning: "Standing out so as to be clearly visible; attracting notice.", example: "His absence from the meeting was conspicuous and raised many questions." },
+        { word: "Contentious", pos: "adj", meaning: "Causing or likely to cause disagreement or argument.", example: "The contentious issue divided the committee along party lines." },
+        { word: "Contrite", pos: "adj", meaning: "Feeling or expressing remorse or penitence.", example: "The contrite student apologized sincerely for the disruption." },
+        { word: "Conundrum", pos: "n", meaning: "A confusing and difficult problem or question.", example: "The budget deficit presented a conundrum for the city council." },
+        { word: "Converge", pos: "v", meaning: "To come together from different directions to meet at a point.", example: "The two rivers converge just outside the small town." },
+        { word: "Copious", pos: "adj", meaning: "Abundant in supply or quantity.", example: "She took copious notes during the lecture to review later." },
+        { word: "Corroborate", pos: "v", meaning: "To confirm or give support to a statement or theory.", example: "The witness's testimony corroborated the evidence found at the scene." },
+        { word: "Credulous", pos: "adj", meaning: "Having or showing too great a readiness to believe things.", example: "The credulous investors fell for the too-good-to-be-true scheme." },
+        { word: "Cryptic", pos: "adj", meaning: "Having a meaning that is mysterious or obscure.", example: "The cryptic message left everyone wondering about its true intent." },
+        { word: "Culpable", pos: "adj", meaning: "Deserving blame.", example: "The investigation found the company culpable for the environmental damage." },
+        { word: "Cursory", pos: "adj", meaning: "Hasty and therefore not thorough or detailed.", example: "A cursory glance at the document was not enough to spot the errors." },
+        { word: "Cynical", pos: "adj", meaning: "Believing that people are motivated purely by self-interest.", example: "His cynical view of politics made him distrust all politicians." },
+        { word: "Deference", pos: "n", meaning: "Humble submission and respect.", example: "She spoke with deference to the opinions of her more experienced colleagues." },
+        { word: "Deft", pos: "adj", meaning: "Neatly skillful and quick in one's movements.", example: "The surgeon's deft hands performed the delicate procedure with precision." }
+    ],
+    4: [
+        { word: "Deleterious", pos: "adj", meaning: "Causing harm or damage.", example: "Smoking has deleterious effects on both physical and mental health." },
+        { word: "Delineate", pos: "v", meaning: "To describe or portray something precisely.", example: "The report delineated the steps needed to achieve the project goals." },
+        { word: "Denounce", pos: "v", meaning: "To publicly declare to be wrong or evil.", example: "World leaders denounced the acts of violence against civilians." },
+        { word: "Deplete", pos: "v", meaning: "To use up the supply or resources of something.", example: "Overfishing has severely depleted the fish population in the ocean." },
+        { word: "Deride", pos: "v", meaning: "To express contempt for; to ridicule.", example: "Critics derided the new policy as misguided and ineffective." },
+        { word: "Desiccate", pos: "v", meaning: "To remove the moisture from; to dry out thoroughly.", example: "The hot sun can desiccate plants if they are not watered regularly." },
+        { word: "Despondent", pos: "adj", meaning: "In low spirits from loss of hope or courage.", example: "After failing the exam for the third time, he became despondent." },
+        { word: "Detrimental", pos: "adj", meaning: "Tending to cause harm.", example: "Lack of sleep can be detrimental to academic performance." },
+        { word: "Deviate", pos: "v", meaning: "To depart from an established course or norm.", example: "The pilot had to deviate from the original flight path due to bad weather." },
+        { word: "Didactic", pos: "adj", meaning: "Intended to teach, particularly in having moral instruction as an ulterior motive.", example: "The didactic novel was praised for its educational value." },
+        { word: "Diffident", pos: "adj", meaning: "Modest or shy because of a lack of self-confidence.", example: "The diffident speaker hesitated before addressing the large audience." },
+        { word: "Digress", pos: "v", meaning: "To leave the main subject temporarily in speech or writing.", example: "The professor tends to digress during lectures, telling unrelated stories." },
+        { word: "Diligent", pos: "adj", meaning: "Having or showing care and conscientiousness in one's work.", example: "Her diligent research efforts resulted in a groundbreaking discovery." },
+        { word: "Diminutive", pos: "adj", meaning: "Extremely or unusually small.", example: "Despite his diminutive stature, he was a powerful and feared athlete." },
+        { word: "Discern", pos: "v", meaning: "To perceive or recognize something that is not immediately obvious.", example: "It was difficult to discern the truth among so many conflicting reports." },
+        { word: "Discrepancy", pos: "n", meaning: "An illogical or surprising lack of compatibility between facts.", example: "There was a discrepancy between the bank statement and the company records." },
+        { word: "Disdain", pos: "n/v", meaning: "The feeling that someone or something is unworthy of consideration.", example: "She looked at the cheap imitation with undisguised disdain." },
+        { word: "Disparity", pos: "n", meaning: "A great difference.", example: "The disparity in wealth between the rich and poor continues to grow." },
+        { word: "Disseminate", pos: "v", meaning: "To spread information widely.", example: "The internet allows people to disseminate information across the globe instantly." },
+        { word: "Diverge", pos: "v", meaning: "To separate from another route and go in a different direction.", example: "Their career paths diverged after they graduated from college." },
+        { word: "Docile", pos: "adj", meaning: "Ready to accept control or instruction; submissive.", example: "The docile dog obeyed every command from its owner." },
+        { word: "Dogmatic", pos: "adj", meaning: "Inclined to lay down principles as incontrovertibly true.", example: "His dogmatic approach left no room for alternative viewpoints." },
+        { word: "Dormant", pos: "adj", meaning: "Temporarily inactive; in a state of rest.", example: "The dormant volcano showed signs of awakening after centuries of silence." },
+        { word: "Duplicity", pos: "n", meaning: "Deceitfulness; double-dealing.", example: "Her duplicity was revealed when the secret letters were discovered." },
+        { word: "Ebullient", pos: "adj", meaning: "Cheerful and full of energy.", example: "The ebullient crowd cheered wildly when the team scored the winning goal." }
+    ],
+    5: [
+        { word: "Eclectic", pos: "adj", meaning: "Deriving ideas or style from a broad and diverse range of sources.", example: "Her eclectic taste in music ranges from classical to hip-hop." },
+        { word: "Efficacy", pos: "n", meaning: "The ability to produce a desired or intended result.", example: "The efficacy of the new vaccine was confirmed by clinical trials." },
+        { word: "Effervescent", pos: "adj", meaning: "Vivacious and enthusiastic; giving off bubbles.", example: "Her effervescent personality lit up every room she entered." },
+        { word: "Egregious", pos: "adj", meaning: "Outstandingly bad; shocking.", example: "The egregious error in the report cost the company millions." },
+        { word: "Elaborate", pos: "adj/v", meaning: "Involving many carefully arranged parts; to develop in detail.", example: "She elaborated on her research findings during the conference presentation." },
+        { word: "Elated", pos: "adj", meaning: "Ecstatically happy.", example: "He was elated when he received the scholarship offer." },
+        { word: "Elicit", pos: "v", meaning: "To draw out a response or reaction from someone.", example: "The comedian's jokes elicited loud laughter from the audience." },
+        { word: "Eloquent", pos: "adj", meaning: "Fluent or persuasive in speaking or writing.", example: "The eloquent speech moved many people to tears." },
+        { word: "Elucidate", pos: "v", meaning: "To make something clear; to explain.", example: "The professor used diagrams to elucidate the complex theory." },
+        { word: "Elusive", pos: "adj", meaning: "Difficult to find, catch, or achieve.", example: "The elusive criminal managed to evade capture for over a decade." },
+        { word: "Emaciate", pos: "v", meaning: "To make abnormally thin or weak.", example: "Months of famine emaciated the once strong and healthy population." },
+        { word: "Emancipate", pos: "v", meaning: "To set free from legal, social, or political restrictions.", example: "The movement sought to emancipate workers from unfair labor practices." },
+        { word: "Embezzle", pos: "v", meaning: "To steal money placed in one's trust or belonging to one's employer.", example: "The accountant was caught trying to embezzle funds from the company." },
+        { word: "Embellish", pos: "v", meaning: "To make something more attractive by adding decorative details; to exaggerate.", example: "He tended to embellish his stories to make them more entertaining." },
+        { word: "Empathy", pos: "n", meaning: "The ability to understand and share the feelings of another.", example: "A good leader should show empathy toward the needs of their team." },
+        { word: "Emulate", pos: "v", meaning: "To match or surpass by imitating.", example: "Young athletes often emulate the training routines of their idols." },
+        { word: "Endemic", pos: "adj", meaning: "Native to and restricted to a certain place; widespread in a particular area.", example: "Corruption was endemic in the government officials of that region." },
+        { word: "Endorse", pos: "v", meaning: "To declare one's public approval or support of.", example: "Several celebrities endorsed the new environmental initiative." },
+        { word: "Enervate", pos: "v", meaning: "To cause someone to feel drained of energy or vitality; to weaken.", example: "The extreme heat enervated the marathon runners." },
+        { word: "Engender", pos: "v", meaning: "To cause or give rise to a feeling, situation, or condition.", example: "The CEO's inspiring speech engendered a sense of hope among the employees." },
+        { word: "Enigma", pos: "n", meaning: "A person or thing that is mysterious or difficult to understand.", example: "The disappearance of the ship remains an enigma to this day." },
+        { word: "Enmity", pos: "n", meaning: "A state of deep-seated ill will or hatred.", example: "The enmity between the two families had lasted for generations." },
+        { word: "Enumerate", pos: "v", meaning: "To mention a number of things one by one.", example: "The report enumerated the various reasons for the project's failure." },
+        { word: "Epitome", pos: "n", meaning: "A person or thing that is a perfect example of a particular quality.", example: "She was the epitome of grace and elegance at the formal event." },
+        { word: "Equanimity", pos: "n", meaning: "Mental calmness, composure, and evenness of temper.", example: "He faced the crisis with remarkable equanimity and never lost his cool." }
+    ],
+    6: [
+        { word: "Equivocate", pos: "v", meaning: "To use ambiguous language so as to conceal the truth or avoid commitment.", example: "The politician equivocated when asked directly about the controversial policy." },
+        { word: "Erratic", pos: "adj", meaning: "Not even or regular in pattern or movement; unpredictable.", example: "The erratic weather patterns made it difficult to plan outdoor events." },
+        { word: "Erudite", pos: "adj", meaning: "Having or showing great knowledge or learning.", example: "The erudite professor could discuss topics ranging from physics to philosophy." },
+        { word: "Esoteric", pos: "adj", meaning: "Intended for or likely to be understood by only a small number of people.", example: "The esoteric theory required years of specialized study to comprehend." },
+        { word: "Espouse", pos: "v", meaning: "To adopt or support a cause, belief, or way of life.", example: "The activist espoused the principles of environmental sustainability." },
+        { word: "Eulogize", pos: "v", meaning: "To praise someone highly in a speech or piece of writing.", example: "Friends gathered to eulogize the beloved community leader." },
+        { word: "Euphemism", pos: "n", meaning: "A mild or indirect word or expression substituted for one considered too harsh.", example: "Saying someone 'passed away' is a euphemism for death." },
+        { word: "Exacerbate", pos: "v", meaning: "To make a problem, bad situation, or negative feeling worse.", example: "The new regulations only served to exacerbate the existing tensions." },
+        { word: "Exalt", pos: "v", meaning: "To hold someone or something in very high regard; to praise.", example: "The poem exalted the beauty of nature and its life-giving forces." },
+        { word: "Exasperate", pos: "v", meaning: "To intensely irritate and frustrate someone.", example: "The constant delays exasperated the already frustrated commuters." },
+        { word: "Exemplify", pos: "v", meaning: "To be a typical example of something; to illustrate or clarify.", example: "Her dedication to the project exemplifies true teamwork." },
+        { word: "Exonerate", pos: "v", meaning: "To absolve someone from blame for a fault or wrongdoing.", example: "New DNA evidence exonerated the man who had spent twenty years in prison." },
+        { word: "Expatriate", pos: "n/adj", meaning: "A person who lives outside their native country.", example: "The expatriate community in Paris organized cultural events from their homeland." },
+        { word: "Expedient", pos: "adj/n", meaning: "Convenient and practical although possibly improper or immoral.", example: "The politician chose the expedient solution rather than the right one." },
+        { word: "Expeditious", pos: "adj", meaning: "Done with speed and efficiency.", example: "The expeditious response of the emergency team saved many lives." },
+        { word: "Expendable", pos: "adj", meaning: "Able to be abandoned or destroyed as no longer useful or necessary.", example: "In the battle, the general considered the small outpost expendable." },
+        { word: "Explicate", pos: "v", meaning: "To analyze and develop an idea or principle in detail.", example: "The scholar spent hours explicating the complex philosophical text." },
+        { word: "Explicit", pos: "adj", meaning: "Stated clearly and in detail, leaving no room for confusion.", example: "The instructions were explicit about the safety procedures." },
+        { word: "Extol", pos: "v", meaning: "To praise enthusiastically.", example: "The review extolled the virtues of the innovative new product." },
+        { word: "Extraneous", pos: "adj", meaning: "Irrelevant or unrelated to the subject being dealt with.", example: "Please remove any extraneous information from the report." },
+        { word: "Extravagant", pos: "adj", meaning: "Lacking restraint in spending money; exceeding what is reasonable.", example: "The extravagant wedding cost more than most people earn in a lifetime." },
+        { word: "Exuberant", pos: "adj", meaning: "Filled with or characterized by lively energy and excitement.", example: "The exuberant fans celebrated in the streets after the victory." },
+        { word: "Facetious", pos: "adj", meaning: "Treating serious issues with deliberately inappropriate humor.", example: "His facetious remark about the deadline did not amuse the project manager." },
+        { word: "Fallacious", pos: "adj", meaning: "Based on a mistaken belief; containing a fallacy.", example: "The argument was fallacious because it relied on faulty assumptions." },
+        { word: "Fastidious", pos: "adj", meaning: "Very attentive to and concerned about accuracy and detail.", example: "The fastidious editor caught every minor error in the manuscript." }
+    ],
+    7: [
+        { word: "Fatuous", pos: "adj", meaning: "Silly and pointless.", example: "His fatuous comments during the meeting wasted everyone's time." },
+        { word: "Fervent", pos: "adj", meaning: "Having or displaying a passionate intensity.", example: "She was a fervent advocate for equal rights and social justice." },
+        { word: "Fickle", pos: "adj", meaning: "Changing frequently, especially as regards one's loyalties or affections.", example: "The fickle audience quickly lost interest in the new television show." },
+        { word: "Fledgling", pos: "adj/n", meaning: "A person or organization that is immature or inexperienced.", example: "The fledgling company struggled to compete with established corporations." },
+        { word: "Flippant", pos: "adj", meaning: "Not showing a serious or respectful attitude.", example: "His flippant response to the serious question offended the interviewer." },
+        { word: "Florid", pos: "adj", meaning: "Having a red or flushed complexion; elaborately or excessively intricate.", example: "The author's florid writing style was not to everyone's taste." },
+        { word: "Foment", pos: "v", meaning: "To instigate or stir up an undesirable sentiment or action.", example: "The agitators tried to foment unrest among the factory workers." },
+        { word: "Forbearance", pos: "n", meaning: "Patient self-control; restraint and tolerance.", example: "She showed great forbearance in dealing with the difficult customer." },
+        { word: "Foreboding", pos: "n/adj", meaning: "Fearful apprehension; a feeling that something bad will happen.", example: "A sense of foreboding settled over the town before the storm arrived." },
+        { word: "Fortuitous", pos: "adj", meaning: "Happening by accident or chance rather than design.", example: "The fortuitous meeting with an old friend led to a new business opportunity." },
+        { word: "Fractious", pos: "adj", meaning: "Easily irritated; unruly.", example: "The fractious child refused to sit still during the entire ceremony." },
+        { word: "Frenetic", pos: "adj", meaning: "Fast and energetic in a rather wild and uncontrolled way.", example: "The frenetic pace of the newsroom left little time for reflection." },
+        { word: "Frivolous", pos: "adj", meaning: "Not having any serious purpose or value.", example: "The judge dismissed the frivolous lawsuit as a waste of court time." },
+        { word: "Frugal", pos: "adj", meaning: "Sparing or economical with regard to money or food.", example: "Her frugal habits allowed her to save enough for a down payment on a house." },
+        { word: "Furtive", pos: "adj", meaning: "Attempting to avoid notice or attention, typically because of guilt.", example: "He cast a furtive glance at the document before hiding it in his bag." },
+        { word: "Futile", pos: "adj", meaning: "Incapable of producing any useful result; pointless.", example: "All attempts to negotiate a peace agreement proved futile." },
+        { word: "Galvanize", pos: "v", meaning: "To shock or excite someone into taking action.", example: "The speech galvanized the community into volunteering for the project." },
+        { word: "Garrulous", pos: "adj", meaning: "Excessively talkative, especially on trivial matters.", example: "The garrulous neighbor kept them talking for hours about nothing important." },
+        { word: "Gauche", pos: "adj", meaning: "Lacking ease or grace; unsophisticated and socially awkward.", example: "His gauche behavior at the formal dinner embarrassed his hosts." },
+        { word: "Grandiloquent", pos: "adj", meaning: "Pompous or extravagant in language, style, or manner.", example: "The grandiloquent speech was full of impressive-sounding but empty phrases." },
+        { word: "Gregarious", pos: "adj", meaning: "Fond of company; sociable.", example: "The gregarious host ensured that every guest had someone to talk to." },
+        { word: "Guileless", pos: "adj", meaning: "Devoid of guile; innocent and without deception.", example: "Her guileless smile made everyone trust her immediately." },
+        { word: "Gullible", pos: "adj", meaning: "Easily persuaded to believe something; credulous.", example: "The gullible tourist fell for the street scam and lost his wallet." },
+        { word: "Hackneyed", pos: "adj", meaning: "Lacking significance through having been overused; unoriginal.", example: "The hackneyed phrases in the speech made it sound like every other political address." },
+        { word: "Harangue", pos: "n/v", meaning: "A lengthy and aggressive speech; to lecture aggressively.", example: "The coach harangued the team after their poor performance in the first half." }
+    ],
+    8: [
+        { word: "Hapless", pos: "adj", meaning: "Unfortunate; having no luck.", example: "The hapless traveler lost his luggage and missed his connecting flight." },
+        { word: "Haughty", pos: "adj", meaning: "Arrogantly superior and disdainful.", example: "Her haughty manner made her unpopular among her peers." },
+        { word: "Hedonistic", pos: "adj", meaning: "Engaged in the pursuit of pleasure; devoted to sensual indulgence.", example: "The hedonistic lifestyle of the wealthy elite was criticized by the press." },
+        { word: "Heresy", pos: "n", meaning: "Belief or opinion contrary to orthodox religious doctrine.", example: "His heresy led to his excommunication from the church." },
+        { word: "Iconoclast", pos: "n", meaning: "A person who attacks cherished beliefs or institutions.", example: "The iconoclast challenged every traditional assumption about education." },
+        { word: "Idiosyncrasy", pos: "n", meaning: "A mode of behavior or way of thought peculiar to an individual.", example: "One of his idiosyncrasies was wearing mismatched socks every day." },
+        { word: "Immutable", pos: "adj", meaning: "Unchanging over time or unable to be changed.", example: "The laws of physics are considered immutable and universal." },
+        { word: "Impasse", pos: "n", meaning: "A situation in which no progress is possible; a deadlock.", example: "The negotiations reached an impasse when neither side would compromise." },
+        { word: "Impeccable", pos: "adj", meaning: "In accordance with the highest standards of propriety; faultless.", example: "Her impeccable manners impressed everyone at the formal dinner." },
+        { word: "Impede", pos: "v", meaning: "To delay or prevent someone or something by obstructing.", example: "Bureaucratic red tape continued to impede the progress of the project." },
+        { word: "Imperious", pos: "adj", meaning: "Assuming power or authority without justification; domineering.", example: "The imperious manager demanded absolute obedience from her staff." },
+        { word: "Impertinent", pos: "adj", meaning: "Not showing proper respect; rude.", example: "The student's impertinent reply to the teacher shocked the entire class." },
+        { word: "Impervious", pos: "adj", meaning: "Not allowing fluid to pass through; unable to be affected by.", example: "She seemed impervious to criticism and continued her controversial approach." },
+        { word: "Impetuous", pos: "adj", meaning: "Acting quickly without thought or care; impulsive.", example: "His impetuous decision to quit his job left him financially unstable." },
+        { word: "Implacable", pos: "adj", meaning: "Unable to be placated; relentless and unstoppable.", example: "The implacable enemy refused all offers of peace and continued fighting." },
+        { word: "Implicit", pos: "adj", meaning: "Implied though not plainly expressed; absolute and unquestioning.", example: "There was an implicit understanding between them that no words were needed." },
+        { word: "Importune", pos: "v", meaning: "To approach someone with an insistence, especially for a favor.", example: "The vendor continued to importune the tourists to buy his souvenirs." },
+        { word: "Imposing", pos: "adj", meaning: "Grand and impressive in appearance, size, or manner.", example: "The imposing castle stood majestically on top of the hill." },
+        { word: "Impoverished", pos: "adj", meaning: "Made poor; reduced to poverty.", example: "The war left the once prosperous nation impoverished and in ruins." },
+        { word: "Improvise", pos: "v", meaning: "To create or perform something spontaneously without preparation.", example: "The jazz musicians loved to improvise during their late-night sessions." },
+        { word: "Impugn", pos: "v", meaning: "To dispute the truth, validity, or honesty of a statement or motive.", example: "The lawyer tried to impugn the credibility of the witness." },
+        { word: "Incandescent", pos: "adj", meaning: "Emitting light as a result of being heated; vividly bright and shining.", example: "The incandescent light bulb illuminated the entire room with warm light." },
+        { word: "Incendiary", pos: "adj/n", meaning: "Relating to or designed to cause fires; a person who starts fires deliberately.", example: "The incendiary device caused a massive fire in the warehouse." },
+        { word: "Inchoate", pos: "adj", meaning: "Just begun and so not fully formed or developed.", example: "The inchoate plan needed much more detail before it could be implemented." },
+        { word: "Incisive", pos: "adj", meaning: "Intelligently analytical and clear-thinking.", example: "Her incisive commentary on the issue provided valuable insights." }
+    ],
+    9: [
+        { word: "Incongruous", pos: "adj", meaning: "Not in harmony or keeping with the surroundings or other aspects.", example: "The modern glass building looked incongruous among the historic brick structures." },
+        { word: "Incorrigible", pos: "adj", meaning: "Not able to be corrected, improved, or reformed.", example: "The incorrigible optimist maintained a positive outlook despite every setback." },
+        { word: "Incredulous", pos: "adj", meaning: "Unwilling or unable to believe something.", example: "She gave him an incredulous look when he claimed to have met the president." },
+        { word: "Indifferent", pos: "adj", meaning: "Having no particular interest or sympathy; unconcerned.", example: "He seemed indifferent to the outcome of the election." },
+        { word: "Indignant", pos: "adj", meaning: "Feeling or showing anger or annoyance at what is perceived as unfair treatment.", example: "The indignant workers staged a protest against the unjust policy." },
+        { word: "Indolent", pos: "adj", meaning: "Wanting to avoid activity or exertion; lazy.", example: "His indolent behavior during the project frustrated his hardworking teammates." },
+        { word: "Indomitable", pos: "adj", meaning: "Impossible to subdue or defeat.", example: "Her indomitable spirit helped her overcome every obstacle in her path." },
+        { word: "Indulgent", pos: "adj", meaning: "Having or showing a tendency to be lenient or lenient with others.", example: "The indulgent parents let their children do whatever they wanted." },
+        { word: "Ineffable", pos: "adj", meaning: "Too great or extreme to be expressed or described in words.", example: "The beauty of the sunset over the ocean was simply ineffable." },
+        { word: "Inept", pos: "adj", meaning: "Having or showing no skill; clumsy.", example: "The inept handling of the situation made everything worse." },
+        { word: "Inexorable", pos: "adj", meaning: "Impossible to stop or prevent; relentless.", example: "The inexorable march of time affects everyone equally." },
+        { word: "Infallible", pos: "adj", meaning: "Incapable of making mistakes or being wrong.", example: "No scientist claims to have an infallible method for predicting earthquakes." },
+        { word: "Ingenious", pos: "adj", meaning: "Clever, original, and inventive.", example: "The engineer came up with an ingenious solution to the design problem." },
+        { word: "Ingratiating", pos: "adj", meaning: "Intended to gain approval or favor; obsequious.", example: "His ingratiating manner seemed insincere to those who knew him well." },
+        { word: "Inherent", pos: "adj", meaning: "Existing in something as a permanent, essential, or characteristic attribute.", example: "There are inherent risks in any type of investment." },
+        { word: "Inimical", pos: "adj", meaning: "Tending to obstruct or harm; hostile.", example: "The harsh climate was inimical to the growth of most crops." },
+        { word: "Iniquity", pos: "n", meaning: "Immoral or grossly unfair behavior; wickedness.", example: "The iniquities of the corrupt regime were finally brought to light." },
+        { word: "Inscrutable", pos: "adj", meaning: "Impossible to understand or interpret.", example: "The Mona Lisa's inscrutable smile has fascinated people for centuries." },
+        { word: "Insipid", pos: "adj", meaning: "Lacking flavor, vigor, or interest.", example: "The insipid conversation at the party made him want to leave early." },
+        { word: "Insolent", pos: "adj", meaning: "Showing a rude and arrogant lack of respect.", example: "The insolent teenager refused to follow the teacher's instructions." },
+        { word: "Insubordinate", pos: "adj", meaning: "Obedient or willing to submit to authority; disobedient.", example: "The insubordinate employee was fired for refusing to follow company policy." },
+        { word: "Intransigent", pos: "adj", meaning: "Unwilling or refusing to change one's views or to agree about something.", example: "The intransigent negotiators could not reach a compromise." },
+        { word: "Intrepid", pos: "adj", meaning: "Fearless; adventurous.", example: "The intrepid explorer ventured deep into the uncharted jungle." },
+        { word: "Inundate", pos: "v", meaning: "To overwhelm with things or people to be dealt with.", example: "After the product launch, the company was inundated with orders." },
+        { word: "Invective", pos: "n", meaning: "Insulting, abusive, or highly critical language.", example: "The debate quickly descended into personal invective rather than policy discussion." }
+    ],
+    10: [
+        { word: "Inveterate", pos: "adj", meaning: "Having a particular habit or interest that is long-established and unlikely to change.", example: "He was an inveterate liar who could never be trusted to tell the truth." },
+        { word: "Invidious", pos: "adj", meaning: "Unfair or lacking justification; likely to arouse resentment or anger.", example: "The invidious comparison between the two students hurt both of their feelings." },
+        { word: "Irascible", pos: "adj", meaning: "Having or showing a tendency to be easily angered.", example: "The irascible old man complained about everything that changed in the neighborhood." },
+        { word: "Irksome", pos: "adj", meaning: "Annoying; irritating.", example: "The irksome sound of construction kept the residents awake all morning." },
+        { word: "Itinerant", pos: "adj", meaning: "Traveling from place to place.", example: "The itinerant musician performed in a different city every night." },
+        { word: "Jettison", pos: "v", meaning: "To throw or drop something from an aircraft or ship; to discard.", example: "The pilot had to jettison the cargo to reduce weight for an emergency landing." },
+        { word: "Jocular", pos: "adj", meaning: "Fond of or characterized by joking; humorous.", example: "The jocular atmosphere at the reunion made everyone feel nostalgic and happy." },
+        { word: "Juxtapose", pos: "v", meaning: "To place close together for contrasting effect.", example: "The artist juxtaposed images of poverty and wealth to highlight social inequality." },
+        { word: "Kindred", pos: "adj/n", meaning: "Similar in kind; related by blood.", example: "She found kindred spirits among the other volunteers at the shelter." },
+        { word: "Laborious", pos: "adj", meaning: "Requiring considerable effort and time; tedious.", example: "The laborious process of cataloging thousands of books took several months." },
+        { word: "Laggard", pos: "adj/n", meaning: "A person who falls behind others; slow-moving.", example: "The laggard in the group slowed everyone down during the hike." },
+        { word: "Lampoon", pos: "v/n", meaning: "To publicly criticize someone by using ridicule, irony, or sarcasm.", example: "The satirical magazine loved to lampoon politicians and public figures." },
+        { word: "Laudable", pos: "adj", meaning: "Deserving praise and commendation.", example: "The charity's laudable efforts to help the homeless were recognized by the city." },
+        { word: "Lethargic", pos: "adj", meaning: "Affected by lethargy; sluggish and apathetic.", example: "The lethargic pace of the reforms frustrated those who demanded immediate action." },
+        { word: "Levity", pos: "n", meaning: "Humor or frivolity; a lack of appropriate seriousness.", example: "The judge's moment of levity in the courtroom surprised everyone present." },
+        { word: "Loquacious", pos: "adj", meaning: "Tending to talk a great deal; talkative.", example: "The loquacious taxi driver shared his life story during the entire ride." },
+        { word: "Lucid", pos: "adj", meaning: "Expressed clearly; easy to understand; mentally clear.", example: "Despite her illness, she remained lucid and gave clear instructions." },
+        { word: "Magnanimous", pos: "adj", meaning: "Very generous or forgiving, especially toward a rival or less powerful person.", example: "The magnanimous winner congratulated his opponent and praised his efforts." },
+        { word: "Malcontent", pos: "n/adj", meaning: "A person who is dissatisfied and rebellious.", example: "The malcontent disrupted the meeting with constant complaints." },
+        { word: "Malfeasance", pos: "n", meaning: "Wrongdoing, especially by a public official.", example: "The mayor was charged with malfeasance for embezzling public funds." },
+        { word: "Malleable", pos: "adj", meaning: "Easily influenced; pliable.", example: "Young minds are malleable and can be shaped by their environment." },
+        { word: "Mellifluous", pos: "adj", meaning: "Sweet or musical; pleasant to hear.", example: "The singer's mellifluous voice captivated the entire audience." },
+        { word: "Mendacious", pos: "adj", meaning: "Not telling the truth; lying.", example: "The mendacious witness perjured himself on the stand." },
+        { word: "Mercenary", pos: "adj/n", meaning: "Primarily concerned with making money at the expense of ethics; a soldier fighting for pay.", example: "The mercenary fought not for a cause but for a hefty paycheck." },
+        { word: "Mercurial", pos: "adj", meaning: "Subject to sudden or unpredictable changes of mood or mind.", example: "Her mercurial temperament made it difficult to know what to expect from her." }
+    ],
+    11: [
+        { word: "Meticulous", pos: "adj", meaning: "Showing great attention to detail; very careful and precise.", example: "The meticulous craftsman spent hours perfecting every detail of the sculpture." },
+        { word: "Milieu", pos: "n", meaning: "A person's social environment.", example: "She thrived in the creative milieu of the art school." },
+        { word: "Mitigate", pos: "v", meaning: "To make less severe, serious, or painful.", example: "The new dam was built to mitigate the effects of flooding in the valley." },
+        { word: "Modicum", pos: "n", meaning: "A small quantity of a particular thing, especially something considered desirable.", example: "He showed not even a modicum of remorse for his actions." },
+        { word: "Momentous", pos: "adj", meaning: "Of great importance or significance, especially in having a bearing on future events.", example: "The momentous decision to ban smoking in public places changed society." },
+        { word: "Moratorium", pos: "n", meaning: "A temporary prohibition of an activity.", example: "The government imposed a moratorium on new mining operations." },
+        { word: "Morose", pos: "adj", meaning: "Sullen and ill-tempered.", example: "He became morose and withdrawn after losing his job." },
+        { word: "Mundane", pos: "adj", meaning: "Lacking interest or excitement; dull.", example: "She longed for adventure to escape her mundane daily routine." },
+        { word: "Munificent", pos: "adj", meaning: "Larger or more generous than is usual or necessary.", example: "The munificent donation from the alumnus funded the new library wing." },
+        { word: "Myriad", pos: "adj/n", meaning: "A countless or extremely great number of things.", example: "There are a myriad of reasons why the project was delayed." },
+        { word: "Nefarious", pos: "adj", meaning: "Wicked or criminal.", example: "The nefarious plot to undermine the government was uncovered by intelligence agencies." },
+        { word: "Nemesis", pos: "n", meaning: "A long-standing rival; an archenemy.", example: "The detective finally caught his nemesis after years of pursuit." },
+        { word: "Neophyte", pos: "n", meaning: "A person who is new to a subject or activity.", example: "As a neophyte in the world of finance, she had much to learn." },
+        { word: "Nettle", pos: "v", meaning: "To irritate or annoy someone.", example: "His condescending tone nettled everyone in the conference room." },
+        { word: "Nonchalant", pos: "adj", meaning: "Feeling or appearing casually calm and relaxed.", example: "She remained nonchalant despite the chaos unfolding around her." },
+        { word: "Obdurate", pos: "adj", meaning: "Stubbornly refusing to change one's opinion or chosen course of action.", example: "The obdurate negotiator refused to make any concessions." },
+        { word: "Obfuscate", pos: "v", meaning: "To render obscure, unclear, or unintelligible.", example: "The complicated legal language was designed to obfuscate rather than clarify." },
+        { word: "Oblique", pos: "adj", meaning: "Neither parallel nor at right angles; indirect.", example: "She made an oblique reference to the scandal without naming anyone." },
+        { word: "Obliterate", pos: "v", meaning: "To destroy utterly; to wipe out.", example: "The earthquake obliterated entire neighborhoods in a matter of seconds." },
+        { word: "Obnoxious", pos: "adj", meaning: "Extremely unpleasant; reprehensible.", example: "The obnoxious behavior of the tourists annoyed the local residents." },
+        { word: "Obsequious", pos: "adj", meaning: "Obedient or attentive to an excessive or servile degree.", example: "The obsequious assistant agreed with everything the boss said." },
+        { word: "Obstreperous", pos: "adj", meaning: "Noisy and difficult to control.", example: "The obstreperous children disrupted the entire library." },
+        { word: "Obviate", pos: "v", meaning: "To remove a need or difficulty; to prevent or avoid.", example: "Careful planning can obviate many potential problems before they arise." },
+        { word: "Odious", pos: "adj", meaning: "Extremely unpleasant; repulsive.", example: "The odious crimes committed by the dictator shocked the entire world." },
+        { word: "Onerous", pos: "adj", meaning: "Involving an amount of effort and difficulty that is oppressively burdensome.", example: "The onerous task of organizing the fundraiser fell to the volunteers." }
+    ],
+    12: [
+        { word: "Opaque", pos: "adj", meaning: "Not able to be seen through; not transparent.", example: "The opaque curtains blocked all the sunlight from entering the room." },
+        { word: "Opportune", pos: "adj", meaning: "Done or occurring at a favorable or suitable time; timely.", example: "The opportune moment to invest in the stock market was during the recession." },
+        { word: "Opprobrious", pos: "adj", meaning: "Expressing scorn or criticism; shameful.", example: "The opprobrious remarks in the review destroyed the author's confidence." },
+        { word: "Ornate", pos: "adj", meaning: "Made in an intricate shape or decorated with complex patterns.", example: "The ornate ceiling of the cathedral took artisans years to complete." },
+        { word: "Ostensible", pos: "adj", meaning: "Stated or appearing to be true, but not necessarily so.", example: "The ostensible reason for the meeting was budget review, but the real topic was layoffs." },
+        { word: "Ostracize", pos: "v", meaning: "To exclude from a society or group.", example: "After the scandal, the community chose to ostracize the disgraced official." },
+        { word: "Overt", pos: "adj", meaning: "Done or shown openly; not secret or hidden.", example: "There was no overt hostility between the two leaders during the summit." },
+        { word: "Oxymoron", pos: "n", meaning: "A figure of speech in which apparently contradictory terms appear in conjunction.", example: "The phrase 'deafening silence' is a well-known oxymoron." },
+        { word: "Palatable", pos: "adj", meaning: "Pleasant to taste; acceptable or satisfactory.", example: "The chef made the healthy meal palatable with creative seasoning." },
+        { word: "Panacea", pos: "n", meaning: "A solution or remedy for all difficulties or diseases.", example: "There is no panacea for the complex problem of global poverty." },
+        { word: "Pandemonium", pos: "n", meaning: "Wild and noisy disorder or confusion; uproar.", example: "Pandemonium erupted when the winning goal was scored in the final seconds." },
+        { word: "Pander", pos: "v", meaning: "To gratify or indulge an immoral or distasteful desire or taste.", example: "The media pandered to public fascination with celebrity gossip." },
+        { word: "Panegyric", pos: "n", meaning: "A public speech or published text in praise of someone or something.", example: "The panegyric delivered at the funeral celebrated the deceased's remarkable life." },
+        { word: "Paragon", pos: "n", meaning: "A model of excellence or perfection of a kind; a peerless example.", example: "She was considered a paragon of virtue by everyone in her community." },
+        { word: "Parochial", pos: "adj", meaning: "Having a limited or narrow outlook or scope.", example: "His parochial views prevented him from understanding global issues." },
+        { word: "Parsimonious", pos: "adj", meaning: "Unwilling to spend money or use resources; stingy.", example: "The parsimonious uncle never gave his nephews and nieces birthday presents." },
+        { word: "Partisan", pos: "adj/n", meaning: "Prejudiced in favor of a particular cause; a strong supporter.", example: "The partisan debate made it impossible to reach a bipartisan agreement." },
+        { word: "Pastoral", pos: "adj", meaning: "Relating to the countryside; having the qualities of country life.", example: "The pastoral scene of rolling green hills and grazing sheep was peaceful." },
+        { word: "Patrician", pos: "adj/n", meaning: "Having a refined, aristocratic manner; a member of the aristocracy.", example: "The patrician woman carried herself with effortless elegance and grace." },
+        { word: "Paucity", pos: "n", meaning: "The presence of something only in small or insufficient quantities.", example: "The paucity of evidence made it impossible to convict the suspect." },
+        { word: "Pedantic", pos: "adj", meaning: "Of or like a pedant; overly concerned with minute details or formalisms.", example: "His pedantic insistence on perfect grammar annoyed his casual friends." },
+        { word: "Penchant", pos: "n", meaning: "A strong or habitual liking for something or tendency to do something.", example: "She had a penchant for adventure and always sought out new experiences." },
+        { word: "Penitent", pos: "adj", meaning: "Feeling or showing sorrow and regret for having done wrong.", example: "The penitent criminal expressed genuine remorse during the sentencing hearing." },
+        { word: "Pensive", pos: "adj", meaning: "Engaged in, involving, or reflecting deep or serious thought.", example: "She sat by the window in a pensive mood, reflecting on the past year." },
+        { word: "Perfunctory", pos: "adj", meaning: "Carried out with a minimum of effort or reflection.", example: "He gave a perfunctory nod and quickly walked past without stopping." }
+    ],
+    13: [
+        { word: "Peripatetic", pos: "adj", meaning: "Traveling from place to place, especially working in various places.", example: "The peripatetic consultant traveled to different cities every week." },
+        { word: "Pernicious", pos: "adj", meaning: "Having a harmful effect, especially in a gradual or subtle way.", example: "The pernicious influence of misinformation eroded public trust in science." },
+        { word: "Perpetuate", pos: "v", meaning: "To cause something to continue indefinitely.", example: "Social media can perpetuate stereotypes if users are not careful about what they share." },
+        { word: "Perquisite", pos: "n", meaning: "A customary privilege or advantage beyond regular salary.", example: "A company car was one of the perquisites that came with the executive position." },
+        { word: "Pertinent", pos: "adj", meaning: "Relevant or applicable to a particular matter.", example: "Please only include pertinent information in your report." },
+        { word: "Peruse", pos: "v", meaning: "To read something, typically in a thorough or careful way.", example: "She perused the contract carefully before signing it." },
+        { word: "Pervasive", pos: "adj", meaning: "Spreading widely throughout an area or group of people.", example: "The pervasive culture of overtime led to widespread burnout among employees." },
+        { word: "Petulant", pos: "adj", meaning: "Childishly sulky or bad-tempered.", example: "The petulant child threw a tantrum when he didn't get what he wanted." },
+        { word: "Philanthropic", pos: "adj", meaning: "Seeking to promote the welfare of others, especially through generous donations.", example: "The philanthropic billionaire donated millions to build schools in rural areas." },
+        { word: "Phlegmatic", pos: "adj", meaning: "Having an unemotional and stolidly calm disposition.", example: "The phlegmatic manager remained calm even during the most stressful situations." },
+        { word: "Pithy", pos: "adj", meaning: "Concise and forcefully expressive.", example: "The pithy quote from the speech was shared thousands of times on social media." },
+        { word: "Platitude", pos: "n", meaning: "A remark or statement that has been used too often to be interesting.", example: "The speech was full of platitudes and offered no real solutions." },
+        { word: "Plausible", pos: "adj", meaning: "Seeming reasonable or probable.", example: "The detective considered the suspect's alibi plausible and ruled him out." },
+        { word: "Pleading", pos: "adj/n", meaning: "Emotionally 请求; begging.", example: "Despite her pleading eyes, the judge had no choice but to enforce the law." },
+        { word: "Pliant", pos: "adj", meaning: "Easily bent or shaped; easily influenced.", example: "The pliant material could be molded into any desired shape." },
+        { word: "Ponderous", pos: "adj", meaning: "Slow and clumsy because of great weight; dull and laborious.", example: "The ponderous novel was difficult to finish due to its excessive length." },
+        { word: "Portentous", pos: "adj", meaning: "Of or like a portent; done in a pompously solemn manner.", example: "The dark clouds on the horizon were portentous of the storm to come." },
+        { word: "Pragmatic", pos: "adj", meaning: "Dealing with things sensibly and realistically.", example: "The pragmatic approach to the problem yielded practical and effective results." },
+        { word: "Precarious", pos: "adj", meaning: "Not securely held or in position; dependent on chance; uncertain.", example: "The company's financial situation was precarious after the market crash." },
+        { word: "Precipitate", pos: "v/adj", meaning: "To cause to happen suddenly or sooner than expected; hasty.", example: "The announcement precipitated a rapid decline in the stock price." },
+        { word: "Precipitous", pos: "adj", meaning: "Dangerously high or steep; done suddenly and without careful consideration.", example: "The precipitous drop in temperature caught many residents unprepared." },
+        { word: "Predilection", pos: "n", meaning: "A preference or special liking for something.", example: "She had a predilection for classical music over contemporary genres." },
+        { word: "Preeminent", pos: "adj", meaning: "Surpassing all others; outstanding.", example: "She was the preeminent scholar in the field of quantum physics." },
+        { word: "Preposterous", pos: "adj", meaning: "Contrary to reason or common sense; utterly absurd.", example: "The preposterous claim that the earth was flat was dismissed by scientists." },
+        { word: "Prerogative", pos: "n", meaning: "A right or privilege exclusive to a particular individual or class.", example: "Changing his mind was the prerogative of the director." }
+    ],
+    14: [
+        { word: "Presage", pos: "v/n", meaning: "A warning or indication of a future event.", example: "The early signs presaged a major shift in the economy." },
+        { word: "Presumptuous", pos: "adj", meaning: "Failing to observe the limits of what is permitted or appropriate.", example: "It was presumuous of him to assume he would be promoted without being asked." },
+        { word: "Prevaricate", pos: "v", meaning: "To speak or act in an evasive way.", example: "When asked directly, the politician chose to prevaricate rather than answer honestly." },
+        { word: "Probity", pos: "n", meaning: "The quality of having strong moral principles; honesty and decency.", example: "Her probity and integrity earned the respect of her colleagues." },
+        { word: "Prodigal", pos: "adj", meaning: "Spending money or resources freely and recklessly; lavish.", example: "His prodigal spending habits left him bankrupt within a few years." },
+        { word: "Prodigious", pos: "adj", meaning: "Remarkably great in extent, size, or degree.", example: "The athlete showed prodigious talent from an early age." },
+        { word: "Profane", pos: "adj/v", meaning: "Relating or devoted to that which is not sacred or holy; to treat something sacred with irreverence.", example: "The vandals profaned the ancient temple with their graffiti." },
+        { word: "Profound", pos: "adj", meaning: "Very great or intense; having deep insight or knowledge.", example: "The book had a profound impact on her understanding of philosophy." },
+        { word: "Profuse", pos: "adj", meaning: "In great quantities; abundant.", example: "She offered profuse apologies for arriving late to the meeting." },
+        { word: "Prohibitive", pos: "adj", meaning: "Serving to forbid or restrict; excessively high in price.", example: "The prohibitive cost of healthcare prevented many from seeking treatment." },
+        { word: "Prolific", pos: "adj", meaning: "Present in large numbers or quantities; producing much fruit or many offspring.", example: "The prolific author published over thirty novels during her career." },
+        { word: "Prominent", pos: "adj", meaning: "Important; famous; projecting from something.", example: "Several prominent figures attended the charity gala." },
+        { word: "Propensity", pos: "n", meaning: "An inclination or natural tendency to behave in a particular way.", example: "He had a propensity for making rash decisions without thinking them through." },
+        { word: "Propitious", pos: "adj", meaning: "Giving or indicating a good chance of success; favorable.", example: "The propitious weather allowed the outdoor wedding to proceed as planned." },
+        { word: "Propriety", pos: "n", meaning: "The state or quality of being proper or correct.", example: "She always observed the proprieties expected at formal social gatherings." },
+        { word: "Prosaic", pos: "adj", meaning: "Having the style or diction of prose; lacking poetic beauty; dull.", example: "The prosaic description of the landscape failed to capture its true beauty." },
+        { word: "Proselytize", pos: "v", meaning: "To convert or attempt to convert someone from one religion or belief to another.", example: "The organization was accused of trying to proselytize its employees." },
+        { word: "Provident", pos: "adj", meaning: "Making or indicative of timely preparation for the future.", example: "The provident farmer stored extra grain before the harsh winter arrived." },
+        { word: "Puerile", pos: "adj", meaning: "Childishly silly and trivial.", example: "The puerile jokes in the meeting were inappropriate for the professional setting." },
+        { word: "Pugnacious", pos: "adj", meaning: "Eager or quick to argue, quarrel, or fight.", example: "The pugnacious debater never backed down from a challenge." },
+        { word: "Punctilious", pos: "adj", meaning: "Showing great attention to detail or correct behavior.", example: "She was punctilious about following every rule in the company handbook." },
+        { word: "Pungent", pos: "adj", meaning: "Having a sharply strong taste or smell.", example: "The pungent aroma of garlic filled the entire kitchen." },
+        { word: "Pusillanimous", pos: "adj", meaning: "Showing a lack of courage or determination; timid.", example: "The pusillanimous response to the crisis disappointed those seeking strong leadership." },
+        { word: "Quagmire", pos: "n", meaning: "A soft boggy area of land; a complex or hazardous situation.", example: "The legal dispute became a quagmire that consumed years and millions of dollars." },
+        { word: "Quandary", pos: "n", meaning: "A state of perplexity or uncertainty over what to do in a difficult situation.", example: "She was in a quandary about whether to accept the job offer or stay at her current position." }
+    ],
+    15: [
+        { word: "Querulous", pos: "adj", meaning: "Complaining in a petulant or whining manner.", example: "The querulous customer complained about every minor inconvenience." },
+        { word: "Quiescent", pos: "adj", meaning: "In a state or period of inactivity or dormancy.", example: "The volcano had been quiescent for decades before suddenly erupting." },
+        { word: "Quintessential", pos: "adj", meaning: "Representing the most perfect or typical example of a quality or class.", example: "The small-town diner was the quintessential example of American nostalgia." },
+        { word: "Quixotic", pos: "adj", meaning: "Exceedingly idealistic; unrealistic and impractical.", example: "His quixotic quest to end all poverty seemed admirable but impossible." },
+        { word: "Quotidian", pos: "adj", meaning: "Of or occurring every day; ordinary.", example: "She longed for something more exciting than her quotidian routine." },
+        { word: "Rancorous", pos: "adj", meaning: "Showing or feeling deep-seated ill will; spiteful.", example: "The rancorous dispute between the brothers tore the family apart." },
+        { word: "Rapacious", pos: "adj", meaning: "Aggressively greedy or grasping.", example: "The rapacious corporation exploited natural resources without regard for the environment." },
+        { word: "Recalcitrant", pos: "adj", meaning: "Having an obstinately uncooperative attitude.", example: "The recalcitrant student refused to follow the classroom rules." },
+        { word: "Recant", pos: "v", meaning: "To withdraw or renounce a previously held belief or statement.", example: "Under pressure, the witness was forced to recant his earlier testimony." },
+        { word: "Reciprocal", pos: "adj", meaning: "Given, felt, or done in return; exchanged between two parties.", example: "The two countries signed a reciprocal trade agreement." },
+        { word: "Recluse", pos: "n", meaning: "A person who lives a solitary life and avoids other people.", example: "After retirement, the famous author became a recluse and rarely left his house." },
+        { word: "Rectify", pos: "v", meaning: "To put right; to correct something that is wrong.", example: "The company moved quickly to rectify the error in the billing system." },
+        { word: "Redoubtable", pos: "adj", meaning: "Formidable, especially as an opponent.", example: "The redoubtable chess grandmaster defeated every challenger at the tournament." },
+        { word: "Refute", pos: "v", meaning: "To prove that a statement or theory is wrong or false.", example: "Scientists were able to refute the false claims with new experimental data." },
+        { word: "Relegate", pos: "v", meaning: "To assign an inferior rank or position to someone.", example: "The defeated team was relegated to a lower division." },
+        { word: "Reminiscent", pos: "adj", meaning: "Tending to remind one of something.", example: "The old photograph was reminiscent of a simpler time in her life." },
+        { word: "Renounce", pos: "v", meaning: "To formally reject or give up something.", example: "He renounced his citizenship to become a citizen of the new country." },
+        { word: "Renown", pos: "n", meaning: "The state of being widely celebrated or known.", example: "The scientist achieved international renown for her groundbreaking research." },
+        { word: "Replete", pos: "adj", meaning: "Filled or well-supplied with something.", example: "The report was replete with statistics supporting the proposed policy changes." },
+        { word: "Reprehensible", pos: "adj", meaning: "Deserving condemnation or reproof.", example: "The reprehensible actions of the corporation outraged the public." },
+        { word: "Reproach", pos: "n/v", meaning: "Address someone in such a way as to express disapproval or disappointment.", example: "She looked at him with reproach when he forgot their anniversary." },
+        { word: "Reprisal", pos: "n", meaning: "An act of retaliation.", example: "The workers feared reprisals from management if they joined the union." },
+        { word: "Repudiate", pos: "v", meaning: "To refuse to accept or be associated with.", example: "The politician was forced to repudiate the extremist views of his supporters." },
+        { word: "Requisite", pos: "adj", meaning: "Made necessary by particular circumstances or regulations.", example: "She had the requisite qualifications for the senior position." },
+        { word: "Rescind", pos: "v", meaning: "To revoke, cancel, or repeal a law, order, or agreement.", example: "The company was forced to rescind the controversial new policy." }
+    ],
+    16: [
+        { word: "Resilient", pos: "adj", meaning: "Able to withstand or recover quickly from difficult conditions.", example: "The resilient community rebuilt their homes after the devastating hurricane." },
+        { word: "Resolute", pos: "adj", meaning: "Admirably purposeful, determined, and unwavering.", example: "She remained resolute in her decision to pursue a career in medicine." },
+        { word: "Resplendent", pos: "adj", meaning: "Attractive and impressive through being richly colorful.", example: "The resplendent palace was adorned with gold and precious gems." },
+        { word: "Restive", pos: "adj", meaning: "Unable to remain still or tranquil, especially because of impatience.", example: "The restive crowd grew impatient as the performance was delayed." },
+        { word: "Retribution", pos: "n", meaning: "Punishment inflicted on someone as vengeance for a wrong or criminal act.", example: "The mob demanded retribution for the crimes committed by the corrupt officials." },
+        { word: "Reverent", pos: "adj", meaning: "Feeling or showing deep and solemn respect.", example: "The reverent silence in the memorial garden honored those who had passed." },
+        { word: "Ribald", pos: "adj", meaning: "Referring to sexual matters in an amusingly coarse or irreverent way.", example: "The ribald jokes at the bachelor party made some of the guests uncomfortable." },
+        { word: "Ridicule", pos: "n/v", meaning: "The use of humor to criticize or expose.", example: "The politician's proposal was met with widespread ridicule in the media." },
+        { word: "Rigorous", pos: "adj", meaning: "Extremely thorough, exhaustive, or accurate.", example: "The rigorous training program prepared athletes for competition at the highest level." },
+        { word: "Sacrosanct", pos: "adj", meaning: "Regarded as too important or valuable to be interfered with.", example: "Freedom of speech is considered sacrosanct in a democratic society." },
+        { word: "Sagacious", pos: "adj", meaning: "Having or showing keen mental discernment and good judgment.", example: "The sagacious leader anticipated the crisis before it happened." },
+        { word: "Salient", pos: "adj", meaning: "Most noticeable or important; prominent.", example: "The report highlighted the salient points of the proposed legislation." },
+        { word: "Salubrious", pos: "adj", meaning: "Health-giving; healthy.", example: "The salubrious mountain air was a welcome change from the city pollution." },
+        { word: "Sanctimonious", pos: "adj", meaning: "Making a show of being morally superior to other people.", example: "Her sanctimonious attitude about环保 habits annoyed her friends." },
+        { word: "Sanguine", pos: "adj", meaning: "Optimistic or positive, especially in a difficult situation.", example: "Despite the odds, the CEO remained sanguine about the company's future." },
+        { word: "Sardonic", pos: "adj", meaning: "Grimly mocking or cynical.", example: "His sardonic smile suggested he didn't believe a word of what he was hearing." },
+        { word: "Satiate", pos: "v", meaning: "To satisfy a desire or an appetite to the full.", example: "The enormous meal satiated even the hungriest members of the group." },
+        { word: "Savvy", pos: "adj/n", meaning: "Shrewd and knowledgeable; having common sense and good judgment.", example: "The savvy investor recognized the opportunity before anyone else." },
+        { word: "Scathing", pos: "adj", meaning: "Witheringly critical; severely critical.", example: "The scathing review of the film discouraged many from seeing it." },
+        { word: "Scintillating", pos: "adj", meaning: "Sparkling or shining brightly; brilliant.", example: "Her scintillating performance on stage earned a standing ovation." },
+        { word: "Scrupulous", pos: "adj", meaning: "Diligent, thorough, and extremely attentive to details.", example: "She was scrupulous about following ethical guidelines in her research." },
+        { word: "Scrutinize", pos: "v", meaning: "To examine or inspect closely and thoroughly.", example: "The auditors scrutinized every financial transaction in the account." },
+        { word: "Sedulous", pos: "adj", meaning: "Showing dedication and diligence.", example: "The sedulous student studied for hours every night before the exam." },
+        { word: "Seminal", pos: "adj", meaning: "Strongly influencing later developments; groundbreaking.", example: "The scientist's seminal work laid the foundation for modern genetics." },
+        { word: "Sensational", pos: "adj", meaning: "Relating to sensation or the senses; intended to attract attention.", example: "The sensational headlines about the scandal dominated the news cycle." }
+    ],
+    17: [
+        { word: "Sensible", pos: "adj", meaning: "Having, using, or showing good sense and sound judgment.", example: "Making a budget is a sensible approach to managing your finances." },
+        { word: "Sentiment", pos: "n", meaning: "A view or opinion held or expressed; a feeling or emotion.", example: "The sentiment among employees was that the new policy was unfair." },
+        { word: "Serendipity", pos: "n", meaning: "The occurrence of events by chance in a happy or beneficial way.", example: "Finding the lost ring in the garden was pure serendipity." },
+        { word: "Servile", pos: "adj", meaning: "Excessively willing to serve or please others; obsequious.", example: "The servile employee agreed to everything the boss said without question." },
+        { word: "Shrewd", pos: "adj", meaning: "Having or showing sharp powers of judgment; astute.", example: "The shrewd negotiator secured a deal that benefited both parties." },
+        { word: "Soporific", pos: "adj/n", meaning: "Tending to induce drowsiness or sleep.", example: "The soporific lecture on tax law put half the audience to sleep." },
+        { word: "Specious", pos: "adj", meaning: "Superficially plausible, but actually wrong.", example: "The specious argument sounded convincing but was based on false premises." },
+        { word: "Sporadic", pos: "adj", meaning: "Occurring at irregular intervals or only in a few places.", example: "Sporadic gunfire could be heard in the distance throughout the night." },
+        { word: "Sprightly", pos: "adj", meaning: "Lively; full of energy.", example: "The sprightly grandmother outpaced all the young runners in the park." },
+        { word: "Spurious", pos: "adj", meaning: "Not being what it purports to be; false or fake.", example: "The spurious document was quickly exposed as a forgery." },
+        { word: "Squalid", pos: "adj", meaning: "Extremely dirty and unpleasant, especially as a result of poverty or neglect.", example: "The refugees were living in squalid conditions with no clean water." },
+        { word: "Staid", pos: "adj", meaning: "Sedate, respectable, and unadventurous.", example: "The staid atmosphere of the library was perfect for concentrated study." },
+        { word: "Staunch", pos: "adj/v", meaning: "Loyal and reliable; to stop or restrict flow of blood.", example: "She was a staunch supporter of the civil rights movement." },
+        { word: "Steadfast", pos: "adj", meaning: "Firm and unwavering; dutifully firm and constant.", example: "His steadfast dedication to the cause inspired many others to join." },
+        { word: "Stolid", pos: "adj", meaning: "Calm, dependable, and showing little emotion or animation.", example: "The stolid security guard showed no reaction to the commotion." },
+        { word: "Strident", pos: "adj", meaning: "Loud and harsh; presenting in a forcefully aggressive way.", example: "The strident criticism of the plan from the opposition party was fierce." },
+        { word: "Subjugate", pos: "v", meaning: "To bring under domination or control; to conquer.", example: "The empire sought to subjugate neighboring territories and peoples." },
+        { word: "Sublime", pos: "adj", meaning: "Of outstanding spiritual, intellectual, or moral worth; awe-inspiring.", example: "The sublime beauty of the Grand Canyon left the tourists speechless." },
+        { word: "Substantiate", pos: "v", meaning: "To provide evidence to support or prove the truth of.", example: "The detective was unable to substantiate the claims made by the witness." },
+        { word: "Succinct", pos: "adj", meaning: "Briefly and clearly expressed.", example: "The CEO gave a succinct summary of the quarterly earnings." },
+        { word: "Surreptitious", pos: "adj", meaning: "Kept secret, especially because it would not be approved of.", example: "She cast a surreptitious glance at the confidential file on the desk." },
+        { word: "Sycophant", pos: "n", meaning: "A person who acts obsequiously toward someone important to gain advantage.", example: "The CEO surrounded himself with sycophants who only told him what he wanted to hear." },
+        { word: "Tacit", pos: "adj", meaning: "Understood or implied without being stated.", example: "There was a tacit agreement between them that the topic would not be discussed." },
+        { word: "Tangential", pos: "adj", meaning: "Relating to or along a tangent; barely relevant to a matter.", example: "The speaker's tangential remarks distracted from the main topic of the lecture." },
+        { word: "Tenacious", pos: "adj", meaning: "Tending to keep a firm hold of something; persistent and determined.", example: "Her tenacious pursuit of justice eventually led to a landmark ruling." }
+    ],
+    18: [
+        { word: "Tendentious", pos: "adj", meaning: "Expressing or intending to promote a particular cause or point of view.", example: "The tendentious article was criticized for its obvious political bias." },
+        { word: "Terse", pos: "adj", meaning: "Sparing in the use of words; abrupt.", example: "His terse reply of 'no comment' left the reporters frustrated." },
+        { word: "Timorous", pos: "adj", meaning: "Showing or suffering from nervousness or fear.", example: "The timorous kitten hid behind the couch when strangers entered the house." },
+        { word: "Trepidation", pos: "n", meaning: "A feeling of fear or agitation about something that may happen.", example: "She approached the job interview with trepidation but ultimately succeeded." },
+        { word: "Truculent", pos: "adj", meaning: "Eager or quick to argue or fight; aggressively defiant.", example: "The truculent negotiator refused to back down on any of his demands." },
+        { word: "Truncate", pos: "v", meaning: "To shorten by cutting off the top or end.", example: "The editor truncated the article to fit the available space in the magazine." },
+        { word: "Tutelage", pos: "n", meaning: "The state of being under the guardianship or protection of someone.", example: "Under the tutelage of the master chef, she learned the art of fine cooking." },
+        { word: "Ubiquitous", pos: "adj", meaning: "Present, appearing, or found everywhere.", example: "Smartphones have become ubiquitous in modern society." },
+        { word: "Umbrage", pos: "n", meaning: "Offense or annoyance.", example: "She took umbrage at the suggestion that she had not worked hard enough." },
+        { word: "Unassuming", pos: "adj", meaning: "Not pretentious or arrogant; modest.", example: "Despite her success, the unassuming actress preferred to avoid the spotlight." },
+        { word: "Unconscionable", pos: "adj", meaning: "Not right or reasonable; excessively high or extreme.", example: "The unconscionable price of the medication prevented many from affording it." },
+        { word: "Underscore", pos: "v", meaning: "To emphasize or draw attention to something.", example: "The report underscored the urgent need for climate action." },
+        { word: "Unimpeachable", pos: "adj", meaning: "Not able to be doubted or questioned; beyond reproach.", example: "The witness had an unimpeachable reputation for honesty and integrity." },
+        { word: "Unprecedented", pos: "adj", meaning: "Never done or known before.", example: "The pandemic led to unprecedented changes in how people work and live." },
+        { word: "Unscrupulous", pos: "adj", meaning: "Having or showing no moral principles; not honest or fair.", example: "The unscrupulous landlord exploited vulnerable tenants for profit." },
+        { word: "Untenable", pos: "adj", meaning: "Not able to be maintained or defended against criticism.", example: "The politician's untenable position forced him to resign." },
+        { word: "Upbraid", pos: "v", meaning: "To find fault with someone; to scold.", example: "The manager upbraided the employee for the careless mistake." },
+        { word: "Urbane", pos: "adj", meaning: "Suave, courteous, and refined in manner.", example: "The urbane diplomat charmed everyone at the international gathering." },
+        { word: "Usurp", pos: "v", meaning: "To take a position of power or importance illegally or by force.", example: "The military general attempted to usurp power from the elected government." },
+        { word: "Utilitarian", pos: "adj", meaning: "Designed to be useful or practical rather than attractive.", example: "The utilitarian design of the building prioritized function over aesthetics." },
+        { word: "Vacillate", pos: "v", meaning: "To alternate or waver between different opinions or actions; to be indecisive.", example: "She vacillated between accepting the offer and staying at her current job." },
+        { word: "Vapid", pos: "adj", meaning: "Offering nothing that is stimulating or challenging; dull.", example: "The vapid conversation at the party bored him to tears." },
+        { word: "Vehement", pos: "adj", meaning: "Showing strong feeling; forceful, passionate, or intense.", example: "The vehement protest against the new law drew thousands of participants." },
+        { word: "Venerate", pos: "v", meaning: "To regard with great respect or reverence.", example: "Many cultures venerate their elders for their wisdom and experience." },
+        { word: "Veracity", pos: "n", meaning: "Conformity to facts; accuracy; truthfulness.", example: "The journalist was known for the veracity of her reporting." }
+    ],
+    19: [
+        { word: "Verbose", pos: "adj", meaning: "Using or expressed in more words than are needed.", example: "The verbose report could have been summarized in half the length." },
+        { word: "Veritable", pos: "adj", meaning: "Used as an intensifier to emphasize that a description is accurate.", example: "The concert was a veritable feast of music and entertainment." },
+        { word: "Vestige", pos: "n", meaning: "A trace or remnant of something that once existed.", example: "The crumbling walls were the last vestige of the ancient Roman fortress." },
+        { word: "Vicarious", pos: "adj", meaning: "Experienced in the imagination through the feelings or actions of another person.", example: "She got a vicarious thrill from watching her son perform on stage." },
+        { word: "Vigilant", pos: "adj", meaning: "Keeping careful watch for possible danger or difficulties.", example: "The vigilant security team monitored every entrance to the building." },
+        { word: "Vilify", pos: "v", meaning: "To speak or write about in an abusively disparaging manner.", example: "The media vilified the whistleblower after the leak of classified documents." },
+        { word: "Vindicate", pos: "v", meaning: "To clear someone of blame or suspicion.", example: "New evidence vindicated the scientist whose theory had been ridiculed for years." },
+        { word: "Vindictive", pos: "adj", meaning: "Having or showing a strong or unreasoning desire for revenge.", example: "The vindictive ex-employee sabotaged the company's servers before leaving." },
+        { word: "Virulent", pos: "adj", meaning: "Extremely severe or harmful in its effects; bitterly hostile.", example: "The virulent strain of the virus spread rapidly across the continent." },
+        { word: "Vitriolic", pos: "adj", meaning: "Filled with bitter criticism or malice.", example: "The vitriolic attack on the journalist shocked even seasoned political observers." },
+        { word: "Vituperate", pos: "v", meaning: "To blame or insult someone in strong, harsh language.", example: "The opposing sides vituperated each other throughout the bitter debate." },
+        { word: "Vivacious", pos: "adj", meaning: "Attractively lively and animated.", example: "Her vivacious personality made her the life of every party she attended." },
+        { word: "Vocation", pos: "n", meaning: "A strong feeling of suitability for a career or occupation.", example: "She felt that teaching was her true vocation, not just a job." },
+        { word: "Volatile", pos: "adj", meaning: "Liable to change rapidly and unpredictably; easily evaporated.", example: "The volatile stock market made investors nervous about their portfolios." },
+        { word: "Voluble", pos: "adj", meaning: "Speaking fluently, frequently, and at length.", example: "The voluble salesperson talked continuously about the product's features." },
+        { word: "Voracious", pos: "adj", meaning: "Wanting or devouring great quantities of food; having an eager approach to an activity.", example: "She was a voracious reader who finished several books every week." },
+        { word: "Wanton", pos: "adj", meaning: "Deliberate and unprovoked; having no just cause or motive.", example: "The wanton destruction of the historic building outraged preservationists." },
+        { word: "Zealous", pos: "adj", meaning: "Having or showing zeal; fervent.", example: "The zealous volunteers worked tirelessly to clean up the neighborhood." },
+        { word: "Acrimony", pos: "n", meaning: "Bitterness or ill feeling.", example: "The acrimony between the two candidates was evident throughout the debate." },
+        { word: "Anomaly", pos: "n", meaning: "Something that deviates from what is standard, normal, or expected.", example: "The sudden spike in temperature was an anomaly that puzzled the scientists." },
+        { word: "Candor", pos: "n", meaning: "The quality of being open and honest in expression; frankness.", example: "She appreciated his candor in admitting his mistake rather than hiding it." },
+        { word: "Dexterity", pos: "n", meaning: "Skill in performing tasks, especially with the hands.", example: "The surgeon's dexterity was evident in the precision of the operation." },
+        { word: "Embellishment", pos: "n", meaning: "A decorative addition or feature; an exaggeration.", example: "His account of the incident contained several embellishments that made it more dramatic." },
+        { word: "Foresight", pos: "n", meaning: "The ability to predict what will happen or be needed in the future.", example: "Her foresight in investing early allowed her to retire comfortably." },
+        { word: "Harmony", pos: "n", meaning: "The state of being in agreement or concord; peaceful coexistence.", example: "The goal of the mediation was to restore harmony between the conflicting parties." }
+    ],
+    20: [
+        { word: "Ignominy", pos: "n", meaning: "Public shame or disgrace.", example: "The criminal was led away in ignominy after the verdict was read." },
+        { word: "Jubilation", pos: "n", meaning: "A feeling of great happiness and triumph.", example: "Jubilation filled the streets as the national team won the championship." },
+        { word: "Kinship", pos: "n", meaning: "Blood relationship; a sharing of characteristics or origins.", example: "Despite their different backgrounds, they felt a deep kinship with each other." },
+        { word: "Lament", pos: "n/v", meaning: "A passionate expression of grief or sorrow.", example: "The poet wrote a lament for the soldiers who lost their lives in the war." },
+        { word: "Mettle", pos: "n", meaning: "A person's ability to cope well with difficulties; resilience.", example: "The crisis tested the mettle of every member of the team." },
+        { word: "Nostalgia", pos: "n", meaning: "A sentimental longing or wistful affection for the past.", example: "Old photographs often evoke feelings of nostalgia for simpler times." },
+        { word: "Overture", pos: "n", meaning: "An orchestral piece opening an act or opera; an introductory proposal.", example: "The company made an overture to the smaller firm about a potential merger." },
+        { word: "Pinnacle", pos: "n", meaning: "The most successful point; the culmination.", example: "Winning the gold medal was the pinnacle of her athletic career." },
+        { word: "Reverie", pos: "n", meaning: "A state of being pleasantly lost in one's thoughts.", example: "She snapped out of her reverie when the bell rang to end the class." },
+        { word: "Solace", pos: "n", meaning: "Comfort or consolation in a time of distress.", example: "He found solace in music during the difficult period after his loss." },
+        { word: "Tranquility", pos: "n", meaning: "The quality or state of being tranquil; calm.", example: "The tranquility of the early morning in the countryside was deeply peaceful." },
+        { word: "Vigor", pos: "n", meaning: "Physical strength and good health; the essence of life force.", example: "She attacked the project with vigor and completed it ahead of schedule." },
+        { word: "Avid", pos: "adj", meaning: "Having or showing a keen interest in or enthusiasm for something.", example: "He was an avid collector of rare first-edition books." },
+        { word: "Benevolent", pos: "adj", meaning: "Well-meaning and kindly; generous and charitable.", example: "The benevolent organization provided shelter and food to those in need." },
+        { word: "Candid", pos: "adj", meaning: "Truthful and straightforward; frank.", example: "Her candid assessment of the project helped identify areas for improvement." },
+        { word: "Diligent", pos: "adj", meaning: "Having or showing care and conscientiousness in one's work or duties.", example: "The diligent researcher spent months verifying every fact in her study." },
+        { word: "Empathy", pos: "n", meaning: "The ability to understand and share the feelings of another person.", example: "A good leader must demonstrate empathy toward the concerns of their team." },
+        { word: "Fervor", pos: "n", meaning: "Great warmth and intensity of spirit or feeling.", example: "The volunteers worked with incredible fervor to complete the project on time." },
+        { word: "Gratitude", pos: "n", meaning: "The quality of being thankful; readiness to show appreciation.", example: "She expressed deep gratitude to everyone who helped during the crisis." },
+        { word: "Humility", pos: "n", meaning: "A modest or low view of one's own importance.", example: "Despite his success, the entrepreneur was known for his humility and kindness." },
+        { word: "Inventive", pos: "adj", meaning: "Having the ability to create or design new things or to think originally.", example: "The inventive student came up with an innovative solution to the problem." },
+        { word: "Jovial", pos: "adj", meaning: "Cheerful and friendly; jolly.", example: "The jovial host welcomed every guest with a warm smile and firm handshake." },
+        { word: "Kindle", pos: "v", meaning: "To arouse or inspire an emotion or feeling; to light or set on fire.", example: "The teacher's passion for science kindled a lifelong interest in the students." },
+        { word: "Luminous", pos: "adj", meaning: "Full of or shedding light; bright or shining.", example: "The luminous moon lit up the night sky over the quiet village." },
+        { word: "Nimble", pos: "adj", meaning: "Quick and light in movement or action; agile.", example: "The nimble fox escaped the hunters by darting through the dense underbrush." }
+    ]
+};
+
+let mastered = JSON.parse(localStorage.getItem('sat-mastered') || '[]');
+let activeDay = 1;
+
+function updateProgress() {
+    const total = 500;
+    const done = mastered.length;
+    const pct = (done / total * 100).toFixed(0);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = done + ' / ' + total + ' words mastered';
+    document.getElementById('progressPct').textContent = pct + '%';
+}
+
+function renderNav() {
+    const nav = document.getElementById('dayNav');
+    nav.innerHTML = '';
+    for (let i = 1; i <= 20; i++) {
+        const btn = document.createElement('button');
+        btn.className = 'day-btn';
+        if (i === activeDay) btn.classList.add('active');
+        const dayWords = WORDS[i].map(w => w.word);
+        const allMastered = dayWords.every(w => mastered.includes(w));
+        if (allMastered) btn.classList.add('done');
+        btn.textContent = 'Day ' + i;
+        btn.onclick = () => { activeDay = i; renderAll(); };
+        nav.appendChild(btn);
+    }
+}
+
+function renderWords() {
+    const app = document.getElementById('app');
+    const words = WORDS[activeDay];
+    const masteredCount = words.filter(w => mastered.includes(w.word)).length;
+
+    let html = `<div class="day-section">
+        <div class="day-header">
+            <h2>Day <span>${activeDay}</span></h2>
+            <div class="day-counter"><strong>${masteredCount}</strong> / ${words.length} mastered</div>
+        </div>
+        <div class="word-grid">`;
+
+    words.forEach((w, i) => {
+        const isMastered = mastered.includes(w.word);
+        html += `<div class="word-card ${isMastered ? 'mastered' : ''}" style="animation-delay:${i * 0.03}s" onclick="this.classList.toggle('open')">
+            <div class="word-top">
+                <div>
+                    <span class="word-name">${w.word}</span>
+                    <span class="word-pos">${w.pos}</span>
+                </div>
+                <button class="master-btn" onclick="toggleMaster(event, '${w.word}')"></button>
+            </div>
+            <div class="word-meaning">${w.meaning}</div>
+            <div class="word-example">"${w.example}"</div>
+        </div>`;
+    });
+
+    html += '</div></div>';
+    app.innerHTML = html;
+}
+
+function toggleMaster(e, word) {
+    e.stopPropagation();
+    if (mastered.includes(word)) {
+        mastered = mastered.filter(w => w !== word);
+    } else {
+        mastered.push(word);
+    }
+    localStorage.setItem('sat-mastered', JSON.stringify(mastered));
+    renderAll();
+}
+
+function renderAll() {
+    renderNav();
+    renderWords();
+    updateProgress();
+}
+
+renderAll();
+</script>
+
+</body>
+</html>
