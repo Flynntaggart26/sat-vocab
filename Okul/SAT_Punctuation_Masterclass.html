@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital SAT Punctuation Masterclass & 30-Question Practice Guide</title>
+<style>:root{--navy:#1a365d;--blue:#2b6cb0;--light:#f8fafc;--border:#e2e8f0;--red:#e53e3e;--green:#38a169;--orange:#dd6b20}
+*{box-sizing:border-box}body{font-family:'Segoe UI',-apple-system,Roboto,Arial,sans-serif;color:#1a202c;line-height:1.55;background:#fff;margin:0;padding:0 20px 60px}
+.topbar{position:sticky;top:0;background:var(--navy);color:#fff;padding:10px 16px;display:flex;gap:12px;align-items:center;z-index:10;margin:0 -20px}
+.topbar a{color:#bee3f8;text-decoration:none;font-size:9pt;font-weight:600}.topbar .spacer{flex:1}.topbar button{background:#fff;color:var(--navy);border:0;border-radius:6px;padding:6px 12px;font-weight:700;cursor:pointer}
+.header{text-align:center;border-bottom:3px double var(--navy);padding:18px 0 14px}.header h1{margin:0;font-size:24pt;color:var(--navy);text-transform:uppercase;letter-spacing:1px}.header p{color:#4a5568;font-weight:600}
+.student-info{display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between;font-size:10pt;border:1px solid #cbd5e0;padding:10px 15px;border-radius:8px;background:var(--light);margin-top:14px}
+.section-title{background:var(--navy);color:#fff;padding:9px 12px;font-size:12pt;font-weight:800;text-transform:uppercase;border-radius:6px;margin:30px 0 14px;letter-spacing:.5px}
+.subsection-title{font-size:11pt;font-weight:800;color:var(--blue);border-bottom:2px solid #ebf8ff;padding-bottom:4px;margin:18px 0 10px}
+.rule-card{border:1px solid var(--border);border-left:5px solid #3182ce;background:var(--light);padding:12px 16px;margin-bottom:14px;border-radius:0 8px 8px 0;font-size:9.5pt}
+.rule-card strong{color:#2c5282}.formula{font-family:Consolas,'Courier New',monospace;background:#edf2f7;padding:2px 6px;border-radius:4px;font-weight:700}
+.trap-box{border:1px solid #feb2b2;border-left:5px solid var(--red);background:#fff5f5;padding:10px 14px;margin-bottom:14px;border-radius:0 8px 8px 0;font-size:9.5pt}.trap-box strong{color:#9b2c2c}
+table.ref{width:100%;border-collapse:collapse;font-size:9pt;margin:10px 0}table.ref th,table.ref td{border:1px solid #cbd5e0;padding:7px 9px;text-align:left;vertical-align:top}table.ref th{background:var(--blue);color:#fff;font-size:8pt;text-transform:uppercase}
+.question-card{border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:14px;page-break-inside:avoid;background:#fff}
+.question-header{font-weight:800;font-size:10pt;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.difficulty-badge{padding:3px 8px;font-size:7.5pt;font-weight:800;border-radius:4px;color:#fff}.easy{background:var(--green)}.medium{background:var(--orange)}.hard{background:var(--red)}
+.passage{font-size:9.5pt;background:var(--light);border-left:3px solid #cbd5e0;padding:10px 14px;margin-bottom:10px;text-align:justify}
+.question-text{font-size:9.5pt;font-weight:700;margin-bottom:8px}.options{display:grid;gap:6px;font-size:9pt}.option{padding:7px 10px;border:1px solid #edf2f7;border-radius:6px;background:#fff;cursor:pointer}.option:hover{border-color:var(--blue)}.option.sel{border-color:var(--blue);background:#ebf8ff}
+.opt-letter{font-weight:800;color:var(--blue);margin-right:6px}.q-actions{margin-top:8px}.q-actions button{background:var(--light);border:1px solid #cbd5e0;border-radius:6px;padding:5px 10px;cursor:pointer;font-weight:700;font-size:8.5pt}
+.q-answer{margin-top:8px;background:#f0fff4;border:1px solid #9ae6b4;border-radius:6px;padding:8px 10px;font-size:9pt}
+.answer-key-table{width:100%;border-collapse:collapse;font-size:8.5pt}.answer-key-table th,.answer-key-table td{border:1px solid #cbd5e0;padding:8px 10px;text-align:left;vertical-align:top}.answer-key-table th{background:var(--blue);color:#fff;text-transform:uppercase;font-size:8pt}.answer-key-table tr:nth-child(even){background:#f7fafc}
+.page-break{page-break-before:always}
+@media print{.topbar,.q-actions{display:none}.option{cursor:default}.q-answer{border:1px solid #9ae6b4}body{padding:0}}
+@media(max-width:640px){.header h1{font-size:16pt}body{padding:0 12px 40px}.topbar{margin:0 -12px}}
+</style>
+</head>
+<body>
+<nav class="topbar"><strong>SAT Punctuation</strong><a href="#rules">Rules</a><a href="#practice">Practice 30</a><a href="#key">Answer Key</a><span class="spacer"></span><button onclick="toggleAll(true)">Show all answers</button><button onclick="toggleAll(false)">Hide</button><button onclick="doPrint()">Print / PDF</button></nav>
+<div class="header"><h1>SAT Punctuation Masterclass</h1><p>College Board-Aligned Rules & 30-Question Progressive Practice — Digital SAT Reading & Writing</p></div>
+<div class="student-info"><span><strong>Name:</strong> _______________________</span><span><strong>Date:</strong> ______________</span><span><strong>Target:</strong> R&W 700+</span><span><strong>Time:</strong> 32 min</span></div>
+
+<div class="section-title" id="rules">Module 1: SAT Punctuation Rules (What the Test Actually Tests)</div>
+<div class="subsection-title">How to attack any punctuation question — 3-step method</div>
+<div class="rule-card"><strong>1. Find the clause types.</strong> Is the text before the blank an Independent Clause (IC = full sentence) or Dependent/Fragment? Is the text after an IC, list, or modifier?<br><strong>2. Apply the allowed patterns only.</strong> SAT has a closed set — if it is not on the list, it is wrong.<br><strong>3. Check matching & traps.</strong> Pairs must match (comma–comma, dash–dash); never separate subject–verb or verb–object; colon never follows a verb/preposition.</div>
+
+<div class="subsection-title">1. Sentence boundaries — the #1 SAT skill</div>
+<div class="rule-card">Two ICs can be joined in <strong>only 4 ways</strong>:<br>• <span class="formula">IC . IC</span> period<br>• <span class="formula">IC ; IC</span> semicolon<br>• <span class="formula">IC , FANBOYS IC</span> — comma + For / And / Nor / But / Or / Yet / So<br>• <span class="formula">IC : IC</span> colon, only when clause 2 explains/amplifies clause 1<br><br>Conjunctive adverbs (however, therefore, moreover, consequently, furthermore) are <strong>not</strong> FANBOYS: use <span class="formula">IC ; however, IC</span>.</div>
+<div class="trap-box"><strong>Comma splice = always wrong:</strong> <span class="formula">IC , IC</span> ✗. Run-on <span class="formula">IC IC</span> ✗. Semicolon + FANBOYS (<span class="formula">IC ; but IC</span>) ✗. Comma + conjunctive adverb (<span class="formula">IC , however IC</span>) ✗.</div>
+
+<div class="subsection-title">2. Colons — strict entry condition</div>
+<div class="rule-card"><strong>Before a colon must be a complete IC.</strong> After can be a list, single noun, phrase, or explaining IC: <span class="formula">IC : list / detail / explanation</span>.<br>Single dash <span class="formula">—</span> introducing an explanation works identically: <span class="formula">IC — explanation</span>.</div>
+<div class="trap-box"><strong>Colon trap:</strong> never after a verb or preposition. ✗ <em>The obstacles are: cost, rules...</em> ✓ <em>The obstacles are cost, rules...</em> ✓ <em>Three obstacles remain: cost, rules...</em></div>
+
+<div class="subsection-title">3. Semicolons — only 2 jobs</div>
+<div class="rule-card">1) <span class="formula">IC ; IC</span> (no conjunction). 2) Super-separator in complex lists: <span class="formula">Tokyo, Japan ; Paris, France ; Nairobi, Kenya</span>. Nothing else. A semicolon can never join IC + fragment, DC + IC, or close a modifier.</div>
+
+<div class="subsection-title">4. Commas — 5 legal uses, 5 bans</div>
+<div class="rule-card"><strong>Use comma for:</strong> 1) <span class="formula">IC , FANBOYS IC</span> 2) <span class="formula">DC , IC</span> (Although..., ...) 3) Intro phrase <span class="formula">Phrase , IC</span> 4) Nonessential pair <span class="formula">, phrase ,</span> 5) Simple list <span class="formula">A , B , and C</span> (Oxford comma expected).</div>
+<div class="trap-box"><strong>Never use a single comma to:</strong> 1) separate subject–verb 2) separate verb–object 3) surround <em>that</em> (restrictive) 4) join two verbs of one subject (<em>surveyed... and recorded...</em>) 5) separate comparison (<em>better... than...</em>).</div>
+
+<div class="subsection-title">5. Dashes & nonessential elements — matching rule</div>
+<div class="rule-card">Removable info must be wrapped in <strong>matching</strong> marks: <span class="formula">, X ,</span> or <span class="formula">— X —</span> or <span class="formula">( X )</span>. Open dash → close dash. Open comma → close comma. Mixing (— X ,) is always wrong.</div>
+
+<div class="subsection-title">6. That / Which / Who (+ essential vs. nonessential names)</div>
+<div class="rule-card">• <strong>that</strong> = restrictive, essential, <strong>no commas</strong>: <em>fluids that support...</em><br>• <strong>which / who</strong> non-restrictive = extra info, <strong>comma before</strong>: <em>fluids, which support...</em><br>• Title + Name without article = essential, no commas: <em>novelist Isabel Allende spent...</em><br>• General noun + <em>, Name ,</em> = nonessential: <em>A researcher, Dr. Vance, published...</em> / <em>The astronomer, Carl Sagan, studied...</em></div>
+
+<div class="subsection-title">7. Apostrophes & possessive pronouns (high-yield table)</div>
+<table class="ref"><tr><th>Situation</th><th>Form</th><th>Example</th></tr>
+<tr><td>Singular noun</td><td><span class="formula">'s</span></td><td>researcher's notebook</td></tr>
+<tr><td>Plural ending in s</td><td><span class="formula">s'</span></td><td>technicians' reports</td></tr>
+<tr><td>Irregular plural</td><td><span class="formula">'s</span></td><td>children's room</td></tr>
+<tr><td>Possessive pronoun (no apostrophe ever)</td><td>its / their / whose / your</td><td>its fur (≠ it's = it is)</td></tr>
+<tr><td>Contraction</td><td>it's / they're / who's / you're</td><td>it's = it is; they're = they are</td></tr></table>
+<div class="trap-box"><strong>its' never exists. researchers's never exists for regular plurals.</strong> Check singular vs. plural from context ('the lead researcher' → singular).</div>
+
+<div class="section-title" id="practice">Module 2: 30 SAT-Style Practice Questions</div>
+<div class="subsection-title">Level 1: Foundation (1–10) · Level 2: Standard (11–20) · Level 3: Traps (21–30) — click an option, then Show answer</div>
+    <div class="question-card" id="q1">
+        <div class="question-header"><span>Question 1</span><span class="difficulty-badge easy">EASY</span></div>
+        <div class="passage">The James Webb Space Telescope collected data from distant planetary systems_______ it transmitted the high-resolution images back to researchers on Earth.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="1"><span class="opt-letter">A)</span> systems, it</div>
+            <div class="option" data-q="1"><span class="opt-letter">B)</span> systems; it</div>
+            <div class="option" data-q="1"><span class="opt-letter">C)</span> systems it</div>
+            <div class="option" data-q="1"><span class="opt-letter">D)</span> systems, and, it</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(1)">Show answer</button></div>
+        <div class="q-answer" id="ans1" hidden><strong>B — Sentence Boundary.</strong> Two independent clauses (ICs) with no conjunction. Semicolon is legal [IC; IC]. A is a comma splice, C is a run-on, D adds a stray second comma.</div>
+    </div>
+    <div class="question-card" id="q2">
+        <div class="question-header"><span>Question 2</span><span class="difficulty-badge easy">EASY</span></div>
+        <div class="passage">Before beginning the expedition into the deep Amazonian basin, the research team packed three indispensable items_______ solar-powered satellite phones, water purification tablets, and lightweight tents.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="2"><span class="opt-letter">A)</span> items:</div>
+            <div class="option" data-q="2"><span class="opt-letter">B)</span> items;</div>
+            <div class="option" data-q="2"><span class="opt-letter">C)</span> items,</div>
+            <div class="option" data-q="2"><span class="opt-letter">D)</span> items—and</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(2)">Show answer</button></div>
+        <div class="q-answer" id="ans2" hidden><strong>A — Colon: List.</strong> The text before the blank is a complete IC. A colon correctly introduces a list. Semicolon needs an IC after it (a list is not an IC). A comma cannot introduce a list here, and '—and' is unidiomatic.</div>
+    </div>
+    <div class="question-card" id="q3">
+        <div class="question-header"><span>Question 3</span><span class="difficulty-badge easy">EASY</span></div>
+        <div class="passage">During the archaeological excavation in Greece, the lead_______ field notebook was lost in a flash flood, forcing the team to reconstruct findings from secondary digital logs.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="3"><span class="opt-letter">A)</span> researchers</div>
+            <div class="option" data-q="3"><span class="opt-letter">B)</span> researchers's</div>
+            <div class="option" data-q="3"><span class="opt-letter">C)</span> researcher's</div>
+            <div class="option" data-q="3"><span class="opt-letter">D)</span> researchers'</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(3)">Show answer</button></div>
+        <div class="q-answer" id="ans3" hidden><strong>C — Singular Possessive.</strong> 'The lead researcher' is singular, so singular possessive researcher's ('s). B is never valid, D is plural possessive (more than one researcher).</div>
+    </div>
+    <div class="question-card" id="q4">
+        <div class="question-header"><span>Question 4</span><span class="difficulty-badge easy">EASY</span></div>
+        <div class="passage">Although the initial chemical reaction proceeded much slower than anticipated_______ the addition of a platinum catalyst rapidly accelerated the final compound synthesis.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="4"><span class="opt-letter">A)</span> anticipated,</div>
+            <div class="option" data-q="4"><span class="opt-letter">B)</span> anticipated;</div>
+            <div class="option" data-q="4"><span class="opt-letter">C)</span> anticipated</div>
+            <div class="option" data-q="4"><span class="opt-letter">D)</span> anticipated:</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(4)">Show answer</button></div>
+        <div class="q-answer" id="ans4" hidden><strong>A — Dependent + Independent.</strong> 'Although...' is a dependent clause (DC). Pattern must be [DC, IC] — comma separates introductory DC from the main clause. Semicolon/colon cannot follow a DC.</div>
+    </div>
+    <div class="question-card" id="q5">
+        <div class="question-header"><span>Question 5</span><span class="difficulty-badge easy">EASY</span></div>
+        <div class="passage">The new urban renewal proposal promised to improve public transport infrastructure_______ it failed to address the pressing issue of affordable housing for lower-income residents.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="5"><span class="opt-letter">A)</span> infrastructure</div>
+            <div class="option" data-q="5"><span class="opt-letter">B)</span> infrastructure,</div>
+            <div class="option" data-q="5"><span class="opt-letter">C)</span> infrastructure; but</div>
+            <div class="option" data-q="5"><span class="opt-letter">D)</span> infrastructure, but</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(5)">Show answer</button></div>
+        <div class="q-answer" id="ans5" hidden><strong>D — FANBOYS.</strong> Two ICs joined by coordinating conjunction 'but' (FANBOYS) require comma before it: [IC, but IC]. B alone is a comma splice; semicolon + FANBOYS is never used on the SAT.</div>
+    </div>
+    <div class="question-card" id="q6">
+        <div class="question-header"><span>Question 6</span><span class="difficulty-badge easy">EASY</span></div>
+        <div class="passage">The arctic fox relies on_______ dense winter coat for survival, changing color from brown in summer to white in winter for seamless camouflage against snow.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="6"><span class="opt-letter">A)</span> it's</div>
+            <div class="option" data-q="6"><span class="opt-letter">B)</span> its</div>
+            <div class="option" data-q="6"><span class="opt-letter">C)</span> its'</div>
+            <div class="option" data-q="6"><span class="opt-letter">D)</span> their</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(6)">Show answer</button></div>
+        <div class="q-answer" id="ans6" hidden><strong>B — Its vs. It's.</strong> Possessive pronoun needed (the coat belongs to the fox): 'its'. 'It's' = 'it is'. 'Its'' does not exist. 'Their' is plural; the fox is singular.</div>
+    </div>
+    <div class="question-card" id="q7">
+        <div class="question-header"><span>Question 7</span><span class="difficulty-badge easy">EASY</span></div>
+        <div class="passage">The conference program featured speeches on climate adaptation, renewable energy grid integration_______ and biodiversity conservation strategies across agricultural land.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="7"><span class="opt-letter">A)</span> ,</div>
+            <div class="option" data-q="7"><span class="opt-letter">B)</span> ;</div>
+            <div class="option" data-q="7"><span class="opt-letter">C)</span> —</div>
+            <div class="option" data-q="7"><span class="opt-letter">D)</span> NO PUNCTUATION</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(7)">Show answer</button></div>
+        <div class="q-answer" id="ans7" hidden><strong>A — Serial / Oxford Comma.</strong> Standard list of three items: A, B, and C. SAT expects the Oxford comma before 'and'. Semicolon/dash are only for complex lists or breaks, not here.</div>
+    </div>
+    <div class="question-card" id="q8">
+        <div class="question-header"><span>Question 8</span><span class="difficulty-badge easy">EASY</span></div>
+        <div class="passage">Dr. Aris Thorne_______ a noted specialist in marine ecology, delivered the opening address at the international ocean conservation summit in Lisbon.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="8"><span class="opt-letter">A)</span> Thorne</div>
+            <div class="option" data-q="8"><span class="opt-letter">B)</span> Thorne,</div>
+            <div class="option" data-q="8"><span class="opt-letter">C)</span> Thorne;</div>
+            <div class="option" data-q="8"><span class="opt-letter">D)</span> Thorne—</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(8)">Show answer</button></div>
+        <div class="q-answer" id="ans8" hidden><strong>B — Nonessential Opener.</strong> The phrase closes with a comma before 'delivered', so it must open with a matching comma. Pair must match: comma–comma. Dash or semicolon would mismatch.</div>
+    </div>
+    <div class="question-card" id="q9">
+        <div class="question-header"><span>Question 9</span><span class="difficulty-badge easy">EASY</span></div>
+        <div class="passage">The architectural restoration team made an unexpected discovery behind the gallery wall_______ a fully preserved 16th-century fresco depicting a celestial map.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="9"><span class="opt-letter">A)</span> wall;</div>
+            <div class="option" data-q="9"><span class="opt-letter">B)</span> wall, and</div>
+            <div class="option" data-q="9"><span class="opt-letter">C)</span> wall—</div>
+            <div class="option" data-q="9"><span class="opt-letter">D)</span> wall</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(9)">Show answer</button></div>
+        <div class="q-answer" id="ans9" hidden><strong>C — Single Dash = Colon.</strong> IC followed by dramatic explanation. Single dash works like a colon. Semicolon fails because 'a fully preserved fresco' is a fragment, not an IC. B adds an illogical 'and'.</div>
+    </div>
+    <div class="question-card" id="q10">
+        <div class="question-header"><span>Question 10</span><span class="difficulty-badge easy">EASY</span></div>
+        <div class="passage">Solar panels have become significantly more efficient over the last decade_______ high installation costs continue to deter many low-income households from adopting the technology.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="10"><span class="opt-letter">A)</span> ; however,</div>
+            <div class="option" data-q="10"><span class="opt-letter">B)</span> , however,</div>
+            <div class="option" data-q="10"><span class="opt-letter">C)</span> ; however</div>
+            <div class="option" data-q="10"><span class="opt-letter">D)</span> . However</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(10)">Show answer</button></div>
+        <div class="q-answer" id="ans10" hidden><strong>A — Conjunctive Adverb.</strong> Joining two ICs with 'however' requires [IC; however, IC]. B is a comma splice. C misses the comma after 'however'. D misses the comma ('. However high...' is wrong).</div>
+    </div>
+    <div class="question-card" id="q11">
+        <div class="question-header"><span>Question 11</span><span class="difficulty-badge medium">MEDIUM</span></div>
+        <div class="passage">In her analysis of 19th-century Gothic literature, scholar Maya Lin argues that one motif recurs throughout Mary Shelley's work_______ isolation in remote landscapes.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="11"><span class="opt-letter">A)</span> work:</div>
+            <div class="option" data-q="11"><span class="opt-letter">B)</span> work;</div>
+            <div class="option" data-q="11"><span class="opt-letter">C)</span> work,</div>
+            <div class="option" data-q="11"><span class="opt-letter">D)</span> work</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(11)">Show answer</button></div>
+        <div class="q-answer" id="ans11" hidden><strong>A — Colon: Explanation.</strong> IC before blank; 'isolation...' explains/amplifies it — colon is ideal. Semicolon fails (fragment after). Comma creates a splice/fragment problem. D creates a run-on of noun stuck to clause.</div>
+    </div>
+    <div class="question-card" id="q12">
+        <div class="question-header"><span>Question 12</span><span class="difficulty-badge medium">MEDIUM</span></div>
+        <div class="passage">The James Webb Space Telescope—a joint project involving NASA, the European Space Agency, and the Canadian Space Agency_______ has provided unprecedented imagery of deep space.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="12"><span class="opt-letter">A)</span> Agency,</div>
+            <div class="option" data-q="12"><span class="opt-letter">B)</span> Agency—</div>
+            <div class="option" data-q="12"><span class="opt-letter">C)</span> Agency;</div>
+            <div class="option" data-q="12"><span class="opt-letter">D)</span> Agency</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(12)">Show answer</button></div>
+        <div class="q-answer" id="ans12" hidden><strong>B — Matching Dashes.</strong> Parenthetical opens with em-dash, so it must close with em-dash. Mixing dash–comma or dash–semicolon is always wrong on the SAT.</div>
+    </div>
+    <div class="question-card" id="q13">
+        <div class="question-header"><span>Question 13</span><span class="difficulty-badge medium">MEDIUM</span></div>
+        <div class="passage">Renowned novelist_______ spent years studying historical archives in Mexico City before writing her award-winning book on early trade networks.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="13"><span class="opt-letter">A)</span> Isabel Allende,</div>
+            <div class="option" data-q="13"><span class="opt-letter">B)</span> Isabel Allende—</div>
+            <div class="option" data-q="13"><span class="opt-letter">C)</span> , Isabel Allende,</div>
+            <div class="option" data-q="13"><span class="opt-letter">D)</span> Isabel Allende</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(13)">Show answer</button></div>
+        <div class="q-answer" id="ans13" hidden><strong>D — Essential Appositive.</strong> Title + Name with no article ('Renowned novelist Isabel Allende') is essential — no commas. Adding one comma (A/B) strands the subject from its verb.</div>
+    </div>
+    <div class="question-card" id="q14">
+        <div class="question-header"><span>Question 14</span><span class="difficulty-badge medium">MEDIUM</span></div>
+        <div class="passage">After reviewing the laboratory_______ detailed reports on groundwater contamination, the regional agency ordered an immediate halt to industrial dumping.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="14"><span class="opt-letter">A)</span> technicians'</div>
+            <div class="option" data-q="14"><span class="opt-letter">B)</span> technician's</div>
+            <div class="option" data-q="14"><span class="opt-letter">C)</span> technicians</div>
+            <div class="option" data-q="14"><span class="opt-letter">D)</span> technicians's</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(14)">Show answer</button></div>
+        <div class="q-answer" id="ans14" hidden><strong>A — Plural Possessive.</strong> Reports belong to multiple technicians → plural possessive technicians' (s'). B is singular. C has no possession. D is never valid for regular plurals.</div>
+    </div>
+    <div class="question-card" id="q15">
+        <div class="question-header"><span>Question 15</span><span class="difficulty-badge medium">MEDIUM</span></div>
+        <div class="passage">Many migratory bird species rely on coastal wetlands for rest during seasonal travel_______ urban encroachment has destroyed over forty percent of these critical habitats.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="15"><span class="opt-letter">A)</span> travel,</div>
+            <div class="option" data-q="15"><span class="opt-letter">B)</span> travel;</div>
+            <div class="option" data-q="15"><span class="opt-letter">C)</span> travel</div>
+            <div class="option" data-q="15"><span class="opt-letter">D)</span> travel, and,</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(15)">Show answer</button></div>
+        <div class="q-answer" id="ans15" hidden><strong>B — Comma Splice Avoidance.</strong> Two ICs, no conjunction → semicolon. A is the classic comma-splice trap. C is a run-on. D is doubly punctuated and ungrammatical.</div>
+    </div>
+    <div class="question-card" id="q16">
+        <div class="question-header"><span>Question 16</span><span class="difficulty-badge medium">MEDIUM</span></div>
+        <div class="passage">The recent study revealed that students who participate in peer-led study groups tend to perform better on standardized exams_______ than students who study entirely in isolation.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="16"><span class="opt-letter">A)</span> ,</div>
+            <div class="option" data-q="16"><span class="opt-letter">B)</span> ;</div>
+            <div class="option" data-q="16"><span class="opt-letter">C)</span> NO PUNCTUATION</div>
+            <div class="option" data-q="16"><span class="opt-letter">D)</span> —</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(16)">Show answer</button></div>
+        <div class="q-answer" id="ans16" hidden><strong>C — Unnecessary Punctuation.</strong> Never separate 'exams' from its comparative 'than...' phrase. Any single mark breaks subject–comparison flow. This is the SAT 'DELETE' question type.</div>
+    </div>
+    <div class="question-card" id="q17">
+        <div class="question-header"><span>Question 17</span><span class="difficulty-badge medium">MEDIUM</span></div>
+        <div class="passage">The museum's new exhibit—which features artifacts from the Bronze Age_______ will remain open to the public until late December.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="17"><span class="opt-letter">A)</span> —</div>
+            <div class="option" data-q="17"><span class="opt-letter">B)</span> ,</div>
+            <div class="option" data-q="17"><span class="opt-letter">C)</span> ;</div>
+            <div class="option" data-q="17"><span class="opt-letter">D)</span> NO PUNCTUATION</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(17)">Show answer</button></div>
+        <div class="q-answer" id="ans17" hidden><strong>A — Matching Dashes.</strong> Nonessential clause opens with '—which', so it must close with '—'. Comma mismatches the opener; semicolon cannot close a dependent modifier.</div>
+    </div>
+    <div class="question-card" id="q18">
+        <div class="question-header"><span>Question 18</span><span class="difficulty-badge medium">MEDIUM</span></div>
+        <div class="passage">Linguists have long observed that languages evolve rapidly when geographically isolated cultures interact_______ new dialects frequently emerge within a few generations.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="18"><span class="opt-letter">A)</span> interact,</div>
+            <div class="option" data-q="18"><span class="opt-letter">B)</span> interact</div>
+            <div class="option" data-q="18"><span class="opt-letter">C)</span> interact and</div>
+            <div class="option" data-q="18"><span class="opt-letter">D)</span> interact:</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(18)">Show answer</button></div>
+        <div class="q-answer" id="ans18" hidden><strong>D — Colon: Explanation.</strong> First clause is a complete IC; second explains the result — colon fits [IC: IC-explanation]. A is a comma splice, B is a run-on, C joins two ICs with bare 'and' (needs ', and').</div>
+    </div>
+    <div class="question-card" id="q19">
+        <div class="question-header"><span>Question 19</span><span class="difficulty-badge medium">MEDIUM</span></div>
+        <div class="passage">The hydrothermal vents along the ocean floor emit mineral-rich fluids_______ support unique ecosystems entirely independent of sunlight.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="19"><span class="opt-letter">A)</span> that,</div>
+            <div class="option" data-q="19"><span class="opt-letter">B)</span> , which</div>
+            <div class="option" data-q="19"><span class="opt-letter">C)</span> which,</div>
+            <div class="option" data-q="19"><span class="opt-letter">D)</span> that;</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(19)">Show answer</button></div>
+        <div class="q-answer" id="ans19" hidden><strong>B — That vs. Which.</strong> Non-restrictive 'which' clause needs a comma before 'which'. 'That' clauses are restrictive and never take a comma before 'that'. C misplaces the comma.</div>
+    </div>
+    <div class="question-card" id="q20">
+        <div class="question-header"><span>Question 20</span><span class="difficulty-badge medium">MEDIUM</span></div>
+        <div class="passage">Marine biologist Elena Gomez surveyed the coral reef off the coast of Belize_______ and recorded significant coral bleaching caused by rising water temperatures.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="20"><span class="opt-letter">A)</span> Belize,</div>
+            <div class="option" data-q="20"><span class="opt-letter">B)</span> Belize;</div>
+            <div class="option" data-q="20"><span class="opt-letter">C)</span> Belize</div>
+            <div class="option" data-q="20"><span class="opt-letter">D)</span> Belize—</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(20)">Show answer</button></div>
+        <div class="q-answer" id="ans20" hidden><strong>C — Compound Predicate.</strong> One subject (Gomez) + two verbs (surveyed... and recorded...) = compound predicate. Never put a comma/semicolon/dash between verb phrases sharing a subject.</div>
+    </div>
+    <div class="question-card" id="q21">
+        <div class="question-header"><span>Question 21</span><span class="difficulty-badge hard">HARD</span></div>
+        <div class="passage">The ancient clay tablets discovered by archaeologists in southern Iraq_______ contain detailed logs recording grain distribution among temple workers during the Sumerian period.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="21"><span class="opt-letter">A)</span> Iraq</div>
+            <div class="option" data-q="21"><span class="opt-letter">B)</span> Iraq,</div>
+            <div class="option" data-q="21"><span class="opt-letter">C)</span> Iraq;</div>
+            <div class="option" data-q="21"><span class="opt-letter">D)</span> Iraq—</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(21)">Show answer</button></div>
+        <div class="q-answer" id="ans21" hidden><strong>A — Subject–Verb.</strong> Long subject ('The ancient clay tablets... Iraq') + verb 'contain'. Never separate subject from verb with a single comma/dash/semicolon.</div>
+    </div>
+    <div class="question-card" id="q22">
+        <div class="question-header"><span>Question 22</span><span class="difficulty-badge hard">HARD</span></div>
+        <div class="passage">A prominent researcher at the Institute for Advanced Study_______ published a groundbreaking paper on quantum entanglement that challenged existing models.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="22"><span class="opt-letter">A)</span> Dr. Julian Vance,</div>
+            <div class="option" data-q="22"><span class="opt-letter">B)</span> , Dr. Julian Vance,</div>
+            <div class="option" data-q="22"><span class="opt-letter">C)</span> Dr. Julian Vance</div>
+            <div class="option" data-q="22"><span class="opt-letter">D)</span> , Dr. Julian Vance</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(22)">Show answer</button></div>
+        <div class="q-answer" id="ans22" hidden><strong>B — Nonessential Name.</strong> 'A prominent researcher...' + name: the indefinite 'A' signals the name is extra info → needs commas both sides. A/C miss the opening comma; D misses the closing one.</div>
+    </div>
+    <div class="question-card" id="q23">
+        <div class="question-header"><span>Question 23</span><span class="difficulty-badge hard">HARD</span></div>
+        <div class="passage">Although many historians once attributed the decline of Mayan city-states solely to warfare, recent sediment samples taken from regional lakes—which show evidence of severe, multi-decade droughts_______ suggest that environmental disaster played a greater role.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="23"><span class="opt-letter">A)</span> droughts,</div>
+            <div class="option" data-q="23"><span class="opt-letter">B)</span> droughts—</div>
+            <div class="option" data-q="23"><span class="opt-letter">C)</span> droughts;</div>
+            <div class="option" data-q="23"><span class="opt-letter">D)</span> droughts</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(23)">Show answer</button></div>
+        <div class="q-answer" id="ans23" hidden><strong>B — Nested Parenthetical.</strong> Inner clause opens 'lakes—which...', so it must close with matching '—' before the main verb 'suggest'. Comma mismatches; semicolon cannot end a modifier.</div>
+    </div>
+    <div class="question-card" id="q24">
+        <div class="question-header"><span>Question 24</span><span class="difficulty-badge hard">HARD</span></div>
+        <div class="passage">The main obstacles facing commercial spaceflight companies are_______ high manufacturing costs, regulatory hurdles, and unpredictable atmospheric conditions during launch.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="24"><span class="opt-letter">A)</span> :</div>
+            <div class="option" data-q="24"><span class="opt-letter">B)</span> ;</div>
+            <div class="option" data-q="24"><span class="opt-letter">C)</span> —</div>
+            <div class="option" data-q="24"><span class="opt-letter">D)</span> NO PUNCTUATION</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(24)">Show answer</button></div>
+        <div class="q-answer" id="ans24" hidden><strong>D — Colon Trap.</strong> Never put colon/dash/semicolon directly after linking verb 'are' or a preposition. The list flows as the complement: 'are high costs...' with no mark.</div>
+    </div>
+    <div class="question-card" id="q25">
+        <div class="question-header"><span>Question 25</span><span class="difficulty-badge hard">HARD</span></div>
+        <div class="passage">The tardigrade, a microscopic organism capable of surviving extreme fluctuations, lowers_______ metabolic rate to near zero during periods of intense environmental stress.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="25"><span class="opt-letter">A)</span> its</div>
+            <div class="option" data-q="25"><span class="opt-letter">B)</span> it's</div>
+            <div class="option" data-q="25"><span class="opt-letter">C)</span> their</div>
+            <div class="option" data-q="25"><span class="opt-letter">D)</span> its'</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(25)">Show answer</button></div>
+        <div class="q-answer" id="ans25" hidden><strong>A — Pronoun Agreement.</strong> 'The tardigrade' is singular → 'its'. 'Their' is plural. 'It's' = 'it is'. 'Its'' never exists.</div>
+    </div>
+    <div class="question-card" id="q26">
+        <div class="question-header"><span>Question 26</span><span class="difficulty-badge hard">HARD</span></div>
+        <div class="passage">_______ the committee members disagreed sharply on budget allocations for research software, they reached a consensus regarding hardware acquisitions for the lab.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="26"><span class="opt-letter">A)</span> However,</div>
+            <div class="option" data-q="26"><span class="opt-letter">B)</span> Although</div>
+            <div class="option" data-q="26"><span class="opt-letter">C)</span> Furthermore,</div>
+            <div class="option" data-q="26"><span class="opt-letter">D)</span> Consequently,</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(26)">Show answer</button></div>
+        <div class="q-answer" id="ans26" hidden><strong>B — Subordinator vs. Adverb.</strong> Only 'Although' creates a dependent clause [Although..., they...]. 'However/Furthermore/Consequently,' are conjunctive adverbs — starting with them plus a comma creates a comma splice.</div>
+    </div>
+    <div class="question-card" id="q27">
+        <div class="question-header"><span>Question 27</span><span class="difficulty-badge hard">HARD</span></div>
+        <div class="passage">Exhausted by months of deep-sea data collection_______ the marine biologists finally completed their comprehensive survey of cold-water coral reefs in the North Atlantic.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="27"><span class="opt-letter">A)</span> collection,</div>
+            <div class="option" data-q="27"><span class="opt-letter">B)</span> collection;</div>
+            <div class="option" data-q="27"><span class="opt-letter">C)</span> collection—</div>
+            <div class="option" data-q="27"><span class="opt-letter">D)</span> collection</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(27)">Show answer</button></div>
+        <div class="q-answer" id="ans27" hidden><strong>A — Intro Modifier.</strong> Introductory participial phrase ('Exhausted...') must be set off with a comma before the main clause subject. Semicolon needs an IC before it; a participial phrase is not an IC.</div>
+    </div>
+    <div class="question-card" id="q28">
+        <div class="question-header"><span>Question 28</span><span class="difficulty-badge hard">HARD</span></div>
+        <div class="passage">The team's research paper—published in the journal Science,_______ generated significant public interest in oceanic ecosystem restoration.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="28"><span class="opt-letter">A)</span> Science—</div>
+            <div class="option" data-q="28"><span class="opt-letter">B)</span> Science,</div>
+            <div class="option" data-q="28"><span class="opt-letter">C)</span> Science;</div>
+            <div class="option" data-q="28"><span class="opt-letter">D)</span> Science</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(28)">Show answer</button></div>
+        <div class="q-answer" id="ans28" hidden><strong>A — Matching Dashes.</strong> Nonessential opens with dash → must close with dash. The ',_______' after Science is the closing slot. Comma mismatches the opener.</div>
+    </div>
+    <div class="question-card" id="q29">
+        <div class="question-header"><span>Question 29</span><span class="difficulty-badge hard">HARD</span></div>
+        <div class="passage">The summit invited delegates from Tokyo, Japan_______ Paris, France_______ Nairobi, Kenya_______ and Bogotá, Colombia.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="29"><span class="opt-letter">A)</span> ; ; ;</div>
+            <div class="option" data-q="29"><span class="opt-letter">B)</span> , , ,</div>
+            <div class="option" data-q="29"><span class="opt-letter">C)</span> — — —</div>
+            <div class="option" data-q="29"><span class="opt-letter">D)</span> : : :</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(29)">Show answer</button></div>
+        <div class="q-answer" id="ans29" hidden><strong>A — Supersemicolons.</strong> Complex list where items already contain commas (City, Country) must use semicolons as super-separators to avoid confusion. Commas alone blur item boundaries.</div>
+    </div>
+    <div class="question-card" id="q30">
+        <div class="question-header"><span>Question 30</span><span class="difficulty-badge hard">HARD</span></div>
+        <div class="passage">In their study of ancient trade, archaeologists examined ceramic vessels found off Sicily_______ analysis of organic residue inside revealed traces of olive oil, wine, and resin from the 4th century BCE.</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">            <div class="option" data-q="30"><span class="opt-letter">A)</span> Sicily,</div>
+            <div class="option" data-q="30"><span class="opt-letter">B)</span> Sicily</div>
+            <div class="option" data-q="30"><span class="opt-letter">C)</span> Sicily, and,</div>
+            <div class="option" data-q="30"><span class="opt-letter">D)</span> Sicily;</div>
+        </div>
+        <div class="q-actions"><button onclick="toggleAns(30)">Show answer</button></div>
+        <div class="q-answer" id="ans30" hidden><strong>D — Sentence Boundary.</strong> Two ICs with no conjunction → semicolon. A is a comma splice, B is a run-on, C is doubly wrong (', and,' + splice).</div>
+    </div>
+<div class="page-break"></div>
+<div class="section-title" id="key">Module 3: Answer Key & Explanations</div>
+<table class="answer-key-table"><thead><tr><th style="width:5%">#</th><th style="width:8%">Ans</th><th style="width:14%">Category</th><th>Why</th></tr></thead><tbody>
+<tr><td><strong>1</strong></td><td><strong>B</strong></td><td>Sentence Boundary</td><td>Two independent clauses (ICs) with no conjunction. Semicolon is legal [IC; IC]. A is a comma splice, C is a run-on, D adds a stray second comma.</td></tr>
+<tr><td><strong>2</strong></td><td><strong>A</strong></td><td>Colon: List</td><td>The text before the blank is a complete IC. A colon correctly introduces a list. Semicolon needs an IC after it (a list is not an IC). A comma cannot introduce a list here, and '—and' is unidiomatic.</td></tr>
+<tr><td><strong>3</strong></td><td><strong>C</strong></td><td>Singular Possessive</td><td>'The lead researcher' is singular, so singular possessive researcher's ('s). B is never valid, D is plural possessive (more than one researcher).</td></tr>
+<tr><td><strong>4</strong></td><td><strong>A</strong></td><td>Dependent + Independent</td><td>'Although...' is a dependent clause (DC). Pattern must be [DC, IC] — comma separates introductory DC from the main clause. Semicolon/colon cannot follow a DC.</td></tr>
+<tr><td><strong>5</strong></td><td><strong>D</strong></td><td>FANBOYS</td><td>Two ICs joined by coordinating conjunction 'but' (FANBOYS) require comma before it: [IC, but IC]. B alone is a comma splice; semicolon + FANBOYS is never used on the SAT.</td></tr>
+<tr><td><strong>6</strong></td><td><strong>B</strong></td><td>Its vs. It's</td><td>Possessive pronoun needed (the coat belongs to the fox): 'its'. 'It's' = 'it is'. 'Its'' does not exist. 'Their' is plural; the fox is singular.</td></tr>
+<tr><td><strong>7</strong></td><td><strong>A</strong></td><td>Serial / Oxford Comma</td><td>Standard list of three items: A, B, and C. SAT expects the Oxford comma before 'and'. Semicolon/dash are only for complex lists or breaks, not here.</td></tr>
+<tr><td><strong>8</strong></td><td><strong>B</strong></td><td>Nonessential Opener</td><td>The phrase closes with a comma before 'delivered', so it must open with a matching comma. Pair must match: comma–comma. Dash or semicolon would mismatch.</td></tr>
+<tr><td><strong>9</strong></td><td><strong>C</strong></td><td>Single Dash = Colon</td><td>IC followed by dramatic explanation. Single dash works like a colon. Semicolon fails because 'a fully preserved fresco' is a fragment, not an IC. B adds an illogical 'and'.</td></tr>
+<tr><td><strong>10</strong></td><td><strong>A</strong></td><td>Conjunctive Adverb</td><td>Joining two ICs with 'however' requires [IC; however, IC]. B is a comma splice. C misses the comma after 'however'. D misses the comma ('. However high...' is wrong).</td></tr>
+<tr><td><strong>11</strong></td><td><strong>A</strong></td><td>Colon: Explanation</td><td>IC before blank; 'isolation...' explains/amplifies it — colon is ideal. Semicolon fails (fragment after). Comma creates a splice/fragment problem. D creates a run-on of noun stuck to clause.</td></tr>
+<tr><td><strong>12</strong></td><td><strong>B</strong></td><td>Matching Dashes</td><td>Parenthetical opens with em-dash, so it must close with em-dash. Mixing dash–comma or dash–semicolon is always wrong on the SAT.</td></tr>
+<tr><td><strong>13</strong></td><td><strong>D</strong></td><td>Essential Appositive</td><td>Title + Name with no article ('Renowned novelist Isabel Allende') is essential — no commas. Adding one comma (A/B) strands the subject from its verb.</td></tr>
+<tr><td><strong>14</strong></td><td><strong>A</strong></td><td>Plural Possessive</td><td>Reports belong to multiple technicians → plural possessive technicians' (s'). B is singular. C has no possession. D is never valid for regular plurals.</td></tr>
+<tr><td><strong>15</strong></td><td><strong>B</strong></td><td>Comma Splice Avoidance</td><td>Two ICs, no conjunction → semicolon. A is the classic comma-splice trap. C is a run-on. D is doubly punctuated and ungrammatical.</td></tr>
+<tr><td><strong>16</strong></td><td><strong>C</strong></td><td>Unnecessary Punctuation</td><td>Never separate 'exams' from its comparative 'than...' phrase. Any single mark breaks subject–comparison flow. This is the SAT 'DELETE' question type.</td></tr>
+<tr><td><strong>17</strong></td><td><strong>A</strong></td><td>Matching Dashes</td><td>Nonessential clause opens with '—which', so it must close with '—'. Comma mismatches the opener; semicolon cannot close a dependent modifier.</td></tr>
+<tr><td><strong>18</strong></td><td><strong>D</strong></td><td>Colon: Explanation</td><td>First clause is a complete IC; second explains the result — colon fits [IC: IC-explanation]. A is a comma splice, B is a run-on, C joins two ICs with bare 'and' (needs ', and').</td></tr>
+<tr><td><strong>19</strong></td><td><strong>B</strong></td><td>That vs. Which</td><td>Non-restrictive 'which' clause needs a comma before 'which'. 'That' clauses are restrictive and never take a comma before 'that'. C misplaces the comma.</td></tr>
+<tr><td><strong>20</strong></td><td><strong>C</strong></td><td>Compound Predicate</td><td>One subject (Gomez) + two verbs (surveyed... and recorded...) = compound predicate. Never put a comma/semicolon/dash between verb phrases sharing a subject.</td></tr>
+<tr><td><strong>21</strong></td><td><strong>A</strong></td><td>Subject–Verb</td><td>Long subject ('The ancient clay tablets... Iraq') + verb 'contain'. Never separate subject from verb with a single comma/dash/semicolon.</td></tr>
+<tr><td><strong>22</strong></td><td><strong>B</strong></td><td>Nonessential Name</td><td>'A prominent researcher...' + name: the indefinite 'A' signals the name is extra info → needs commas both sides. A/C miss the opening comma; D misses the closing one.</td></tr>
+<tr><td><strong>23</strong></td><td><strong>B</strong></td><td>Nested Parenthetical</td><td>Inner clause opens 'lakes—which...', so it must close with matching '—' before the main verb 'suggest'. Comma mismatches; semicolon cannot end a modifier.</td></tr>
+<tr><td><strong>24</strong></td><td><strong>D</strong></td><td>Colon Trap</td><td>Never put colon/dash/semicolon directly after linking verb 'are' or a preposition. The list flows as the complement: 'are high costs...' with no mark.</td></tr>
+<tr><td><strong>25</strong></td><td><strong>A</strong></td><td>Pronoun Agreement</td><td>'The tardigrade' is singular → 'its'. 'Their' is plural. 'It's' = 'it is'. 'Its'' never exists.</td></tr>
+<tr><td><strong>26</strong></td><td><strong>B</strong></td><td>Subordinator vs. Adverb</td><td>Only 'Although' creates a dependent clause [Although..., they...]. 'However/Furthermore/Consequently,' are conjunctive adverbs — starting with them plus a comma creates a comma splice.</td></tr>
+<tr><td><strong>27</strong></td><td><strong>A</strong></td><td>Intro Modifier</td><td>Introductory participial phrase ('Exhausted...') must be set off with a comma before the main clause subject. Semicolon needs an IC before it; a participial phrase is not an IC.</td></tr>
+<tr><td><strong>28</strong></td><td><strong>A</strong></td><td>Matching Dashes</td><td>Nonessential opens with dash → must close with dash. The ',_______' after Science is the closing slot. Comma mismatches the opener.</td></tr>
+<tr><td><strong>29</strong></td><td><strong>A</strong></td><td>Supersemicolons</td><td>Complex list where items already contain commas (City, Country) must use semicolons as super-separators to avoid confusion. Commas alone blur item boundaries.</td></tr>
+<tr><td><strong>30</strong></td><td><strong>D</strong></td><td>Sentence Boundary</td><td>Two ICs with no conjunction → semicolon. A is a comma splice, B is a run-on, C is doubly wrong (', and,' + splice).</td></tr>
+</tbody></table>
+<script>function toggleAns(n){const e=document.getElementById('ans'+n);e.hidden=!e.hidden;}
+function toggleAll(show){document.querySelectorAll('.q-answer').forEach(e=>e.hidden=!show);}
+function doPrint(){window.print();}
+document.addEventListener('click',e=>{const o=e.target.closest('.option');if(!o)return;const box=o.parentElement;box.querySelectorAll('.option').forEach(x=>x.classList.remove('sel'));o.classList.add('sel');});
+</script>
+</body></html>
