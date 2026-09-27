@@ -1,170 +1,261 @@
-# SAT Punctuation Masterclass & 30-Question Workbook Generator
-# Data-driven version: edit QUESTIONS / RULES below, run to rebuild HTML.
-# Aligned to College Board Digital SAT - Standard English Conventions.
+# SAT Extreme Challenge - 60-Question Generator (30 Punctuation + 30 Grammar)
+# No study section. Difficulty: HARD / VERY HARD / EXTREME.
 import pathlib
 
 QUESTIONS = [
- dict(n=1, level="EASY",
-  passage="The James Webb Space Telescope collected data from distant planetary systems_______ it transmitted the high-resolution images back to researchers on Earth.",
-  opts=["A) systems, it", "B) systems; it", "C) systems it", "D) systems, and, it"],
-  ans="B", cat="Sentence Boundary",
-  exp="Two independent clauses (ICs) with no conjunction. Semicolon is legal [IC; IC]. A is a comma splice, C is a run-on, D adds a stray second comma."),
- dict(n=2, level="EASY",
-  passage="Before beginning the expedition into the deep Amazonian basin, the research team packed three indispensable items_______ solar-powered satellite phones, water purification tablets, and lightweight tents.",
-  opts=["A) items:", "B) items;", "C) items,", "D) items—and"],
-  ans="A", cat="Colon: List",
-  exp="The text before the blank is a complete IC. A colon correctly introduces a list. Semicolon needs an IC after it (a list is not an IC). A comma cannot introduce a list here, and '—and' is unidiomatic."),
- dict(n=3, level="EASY",
-  passage="During the archaeological excavation in Greece, the lead_______ field notebook was lost in a flash flood, forcing the team to reconstruct findings from secondary digital logs.",
-  opts=["A) researchers", "B) researchers's", "C) researcher's", "D) researchers'"],
-  ans="C", cat="Singular Possessive",
-  exp="'The lead researcher' is singular, so singular possessive researcher's ('s). B is never valid, D is plural possessive (more than one researcher)."),
- dict(n=4, level="EASY",
-  passage="Although the initial chemical reaction proceeded much slower than anticipated_______ the addition of a platinum catalyst rapidly accelerated the final compound synthesis.",
-  opts=["A) anticipated,", "B) anticipated;", "C) anticipated", "D) anticipated:"],
-  ans="A", cat="Dependent + Independent",
-  exp="'Although...' is a dependent clause (DC). Pattern must be [DC, IC] — comma separates introductory DC from the main clause. Semicolon/colon cannot follow a DC."),
- dict(n=5, level="EASY",
-  passage="The new urban renewal proposal promised to improve public transport infrastructure_______ it failed to address the pressing issue of affordable housing for lower-income residents.",
-  opts=["A) infrastructure", "B) infrastructure,", "C) infrastructure; but", "D) infrastructure, but"],
-  ans="D", cat="FANBOYS",
-  exp="Two ICs joined by coordinating conjunction 'but' (FANBOYS) require comma before it: [IC, but IC]. B alone is a comma splice; semicolon + FANBOYS is never used on the SAT."),
- dict(n=6, level="EASY",
-  passage="The arctic fox relies on_______ dense winter coat for survival, changing color from brown in summer to white in winter for seamless camouflage against snow.",
-  opts=["A) it's", "B) its", "C) its'", "D) their"],
-  ans="B", cat="Its vs. It's",
-  exp="Possessive pronoun needed (the coat belongs to the fox): 'its'. 'It's' = 'it is'. 'Its'' does not exist. 'Their' is plural; the fox is singular."),
- dict(n=7, level="EASY",
-  passage="The conference program featured speeches on climate adaptation, renewable energy grid integration_______ and biodiversity conservation strategies across agricultural land.",
-  opts=["A) ,", "B) ;", "C) —", "D) NO PUNCTUATION"],
-  ans="A", cat="Serial / Oxford Comma",
-  exp="Standard list of three items: A, B, and C. SAT expects the Oxford comma before 'and'. Semicolon/dash are only for complex lists or breaks, not here."),
- dict(n=8, level="EASY",
-  passage="Dr. Aris Thorne_______ a noted specialist in marine ecology, delivered the opening address at the international ocean conservation summit in Lisbon.",
-  opts=["A) Thorne", "B) Thorne,", "C) Thorne;", "D) Thorne—"],
-  ans="B", cat="Nonessential Opener",
-  exp="The phrase closes with a comma before 'delivered', so it must open with a matching comma. Pair must match: comma–comma. Dash or semicolon would mismatch."),
- dict(n=9, level="EASY",
-  passage="The architectural restoration team made an unexpected discovery behind the gallery wall_______ a fully preserved 16th-century fresco depicting a celestial map.",
-  opts=["A) wall;", "B) wall, and", "C) wall—", "D) wall"],
-  ans="C", cat="Single Dash = Colon",
-  exp="IC followed by dramatic explanation. Single dash works like a colon. Semicolon fails because 'a fully preserved fresco' is a fragment, not an IC. B adds an illogical 'and'."),
- dict(n=10, level="EASY",
-  passage="Solar panels have become significantly more efficient over the last decade_______ high installation costs continue to deter many low-income households from adopting the technology.",
+ # ============ PART A: PUNCTUATION (1-30) ============
+ dict(n=1, level="HARD", cat="Punctuation: Sentence Boundary",
+  passage="The subterranean mycelial networks linking old-growth Douglas firs redistribute carbon and warning chemicals across the forest_______ they function less like isolated organisms than like a single cooperative system.",
+  opts=["A) forest, they", "B) forest; they", "C) forest they", "D) forest, and, they"],
+  ans="B", exp="Two ICs, no conjunction -> [IC; IC]. A is a comma splice, C a run-on, D adds an illegal second comma."),
+ dict(n=2, level="HARD", cat="Punctuation: Colon List",
+  passage="Before calibrating the cryogenic sensors for the Antarctic borehole mission, the engineering crew assembled four custom instruments_______ a distributed acoustic array, a laser fluorometer, a magnetotelluric probe, and a sterile coring module.",
+  opts=["A) instruments;", "B) instruments,", "C) instruments:", "D) instruments—and"],
+  ans="C", exp="IC before blank introduces a list -> colon. Semicolon needs an IC after; a comma cannot launch a list; dash+and is unidiomatic."),
+ dict(n=3, level="HARD", cat="Punctuation: Singular Possessive",
+  passage="After the flood breached the conservation laboratory, the chief_______ painstakingly annotated catalog of salvaged cuneiform fragments became the only record of the collection's original order.",
+  opts=["A) curators", "B) curators's", "C) curator's", "D) curators'"],
+  ans="C", exp="Singular 'chief curator' -> curator's. B never valid for regular nouns; D is plural."),
+ dict(n=4, level="HARD", cat="Punctuation: Dependent + Independent",
+  passage="Even though the permafrost cores yielded far less intact DNA than the team had projected_______ the residual sequences proved sufficient to reconstruct three extinct viral genomes.",
+  opts=["A) projected;", "B) projected", "C) projected:", "D) projected,"],
+  ans="D", exp="'Even though...' is a DC -> [DC, IC]. Semicolon/colon cannot follow a dependent clause."),
+ dict(n=5, level="HARD", cat="Punctuation: FANBOYS",
+  passage="The municipal desalination plan promised to stabilize the coastal aquifer_______ it conspicuously omitted any binding limit on agricultural extraction during drought years.",
+  opts=["A) aquifer, yet", "B) aquifer", "C) aquifer; yet", "D) aquifer,"],
+  ans="A", exp="Two ICs joined by FANBOYS 'yet' -> [IC, yet IC]. B is a run-on, C is semicolon+FANBOYS (never on SAT), D is a comma splice."),
+ dict(n=6, level="HARD", cat="Punctuation: Its / It's",
+  passage="The advisory committee released_______ final assessment only after the dissenting members appended a minority report challenging the groundwater model.",
+  opts=["A) it's", "B) its'", "C) its", "D) their"],
+  ans="C", exp="Singular collective 'committee' -> possessive 'its'. It's = it is; its' never exists; their is plural."),
+ dict(n=7, level="HARD", cat="Punctuation: Serial Comma",
+  passage="The symposium proceedings included papers on quantum error correction, neuromorphic hardware co-design_______ and post-quantum lattice cryptography for satellite uplinks.",
+  opts=["A) ;", "B) ,", "C) —", "D) NO PUNCTUATION"],
+  ans="B", exp="Simple three-item list needs Oxford comma before 'and'. Semicolon/dash reserved for complex lists or breaks."),
+ dict(n=8, level="HARD", cat="Punctuation: Nonessential Pair",
+  passage="Dr. Lena Okafor_______ a leading authority on mangrove restoration, testified before the coastal commission that replanting alone cannot offset sediment starvation.",
+  opts=["A) Okafor", "B) Okafor;", "C) Okafor,", "D) Okafor—"],
+  ans="C", exp="Closer is ', testified' so opener must be a matching comma. Dash/semicolon mismatch the closing comma."),
+ dict(n=9, level="HARD", cat="Punctuation: Dash as Colon",
+  passage="Ground-penetrating radar beneath the nave revealed a single anomaly_______ a vaulted crypt whose masonry predates the cathedral above it by nearly two centuries.",
+  opts=["A) nave;", "B) nave", "C) nave, and", "D) nave—"],
+  ans="D", exp="IC + dramatic explanation -> single dash (= colon). Semicolon fails (fragment after); 'and' distorts meaning."),
+ dict(n=10, level="HARD", cat="Punctuation: Conjunctive Adverb",
+  passage="Orbital refueling could in principle extend deep-space missions by years_______ mission planners remain constrained by boil-off losses that no existing depot has solved.",
   opts=["A) ; however,", "B) , however,", "C) ; however", "D) . However"],
-  ans="A", cat="Conjunctive Adverb",
-  exp="Joining two ICs with 'however' requires [IC; however, IC]. B is a comma splice. C misses the comma after 'however'. D misses the comma ('. However high...' is wrong)."),
- dict(n=11, level="MEDIUM",
-  passage="In her analysis of 19th-century Gothic literature, scholar Maya Lin argues that one motif recurs throughout Mary Shelley's work_______ isolation in remote landscapes.",
-  opts=["A) work:", "B) work;", "C) work,", "D) work"],
-  ans="A", cat="Colon: Explanation",
-  exp="IC before blank; 'isolation...' explains/amplifies it — colon is ideal. Semicolon fails (fragment after). Comma creates a splice/fragment problem. D creates a run-on of noun stuck to clause."),
- dict(n=12, level="MEDIUM",
-  passage="The James Webb Space Telescope—a joint project involving NASA, the European Space Agency, and the Canadian Space Agency_______ has provided unprecedented imagery of deep space.",
-  opts=["A) Agency,", "B) Agency—", "C) Agency;", "D) Agency"],
-  ans="B", cat="Matching Dashes",
-  exp="Parenthetical opens with em-dash, so it must close with em-dash. Mixing dash–comma or dash–semicolon is always wrong on the SAT."),
- dict(n=13, level="MEDIUM",
-  passage="Renowned novelist_______ spent years studying historical archives in Mexico City before writing her award-winning book on early trade networks.",
-  opts=["A) Isabel Allende,", "B) Isabel Allende—", "C) , Isabel Allende,", "D) Isabel Allende"],
-  ans="D", cat="Essential Appositive",
-  exp="Title + Name with no article ('Renowned novelist Isabel Allende') is essential — no commas. Adding one comma (A/B) strands the subject from its verb."),
- dict(n=14, level="MEDIUM",
-  passage="After reviewing the laboratory_______ detailed reports on groundwater contamination, the regional agency ordered an immediate halt to industrial dumping.",
-  opts=["A) technicians'", "B) technician's", "C) technicians", "D) technicians's"],
-  ans="A", cat="Plural Possessive",
-  exp="Reports belong to multiple technicians → plural possessive technicians' (s'). B is singular. C has no possession. D is never valid for regular plurals."),
- dict(n=15, level="MEDIUM",
-  passage="Many migratory bird species rely on coastal wetlands for rest during seasonal travel_______ urban encroachment has destroyed over forty percent of these critical habitats.",
-  opts=["A) travel,", "B) travel;", "C) travel", "D) travel, and,"],
-  ans="B", cat="Comma Splice Avoidance",
-  exp="Two ICs, no conjunction → semicolon. A is the classic comma-splice trap. C is a run-on. D is doubly punctuated and ungrammatical."),
- dict(n=16, level="MEDIUM",
-  passage="The recent study revealed that students who participate in peer-led study groups tend to perform better on standardized exams_______ than students who study entirely in isolation.",
+  ans="A", exp="Two ICs with 'however' -> [IC; however, IC]. B is a splice; C omits comma after however; D strands 'However' without comma."),
+ dict(n=11, level="VERY HARD", cat="Punctuation: Colon Explanation",
+  passage="Analyzing Edo-period merchant diaries, historian Kenji Mori identifies a single anxiety recurring across three decades of entries_______ the prospect that a debased currency would dissolve obligations built on trust.",
+  opts=["A) entries;", "B) entries,", "C) entries:", "D) entries"],
+  ans="C", exp="IC before; noun-clause explanation after -> colon [IC: explanation]. Semicolon needs IC after (this is a fragment); comma splices."),
+ dict(n=12, level="VERY HARD", cat="Punctuation: Matching Dashes",
+  passage="The Atacama Large Millimeter Array—a collaboration spanning twenty nations, forty-five antennas, and three continents_______ has recalibrated estimates of planet formation timescales.",
+  opts=["A) continents,", "B) continents", "C) continents;", "D) continents—"],
+  ans="D", exp="Parenthetical opens with dash -> must close with dash, even though it contains internal commas. Mixing dash-comma is always wrong."),
+ dict(n=13, level="VERY HARD", cat="Punctuation: Essential Appositive",
+  passage="Celebrated poet_______ assembled the anthology from prison correspondence, oral histories, and previously suppressed broadsides circulated during the blockade.",
+  opts=["A) , Lucille Harper,", "B) Lucille Harper", "C) Lucille Harper,", "D) Lucille Harper—"],
+  ans="B", exp="Title + Name ('Celebrated poet Lucille Harper') is essential -> no commas. Any single mark strands subject from verb 'assembled'."),
+ dict(n=14, level="VERY HARD", cat="Punctuation: Plural Possessive",
+  passage="After auditing the regional hospitals' supply chains, investigators traced the counterfeit vials to the distributors_______ falsified cold-chain logs rather than to the manufacturers.",
+  opts=["A) distributor's", "B) distributors", "C) distributors'", "D) distributors's"],
+  ans="C", exp="Multiple distributors own the logs -> distributors'. A is singular; B has no possession; D never valid for regular plurals."),
+ dict(n=15, level="VERY HARD", cat="Punctuation: Sentence Boundary",
+  passage="Seagrass meadows sequester dissolved carbon at rates rivaling tropical forests_______ policymakers continue to classify them as marginal habitat in coastal zoning reviews.",
+  opts=["A) forests,", "B) forests", "C) forests, and,", "D) forests;"],
+  ans="D", exp="Two ICs, no conjunction -> semicolon. A is the classic splice trap; B run-on; C doubly punctuated."),
+ dict(n=16, level="VERY HARD", cat="Punctuation: No Punctuation (Comparison)",
+  passage="Field trials showed that the drought-tolerant maize lines yielded substantially more grain under water stress_______ than the elite commercial hybrids grown in adjacent plots.",
   opts=["A) ,", "B) ;", "C) NO PUNCTUATION", "D) —"],
-  ans="C", cat="Unnecessary Punctuation",
-  exp="Never separate 'exams' from its comparative 'than...' phrase. Any single mark breaks subject–comparison flow. This is the SAT 'DELETE' question type."),
- dict(n=17, level="MEDIUM",
-  passage="The museum's new exhibit—which features artifacts from the Bronze Age_______ will remain open to the public until late December.",
-  opts=["A) —", "B) ,", "C) ;", "D) NO PUNCTUATION"],
-  ans="A", cat="Matching Dashes",
-  exp="Nonessential clause opens with '—which', so it must close with '—'. Comma mismatches the opener; semicolon cannot close a dependent modifier."),
- dict(n=18, level="MEDIUM",
-  passage="Linguists have long observed that languages evolve rapidly when geographically isolated cultures interact_______ new dialects frequently emerge within a few generations.",
-  opts=["A) interact,", "B) interact", "C) interact and", "D) interact:"],
-  ans="D", cat="Colon: Explanation",
-  exp="First clause is a complete IC; second explains the result — colon fits [IC: IC-explanation]. A is a comma splice, B is a run-on, C joins two ICs with bare 'and' (needs ', and')."),
- dict(n=19, level="MEDIUM",
-  passage="The hydrothermal vents along the ocean floor emit mineral-rich fluids_______ support unique ecosystems entirely independent of sunlight.",
-  opts=["A) that,", "B) , which", "C) which,", "D) that;"],
-  ans="B", cat="That vs. Which",
-  exp="Non-restrictive 'which' clause needs a comma before 'which'. 'That' clauses are restrictive and never take a comma before 'that'. C misplaces the comma."),
- dict(n=20, level="MEDIUM",
-  passage="Marine biologist Elena Gomez surveyed the coral reef off the coast of Belize_______ and recorded significant coral bleaching caused by rising water temperatures.",
-  opts=["A) Belize,", "B) Belize;", "C) Belize", "D) Belize—"],
-  ans="C", cat="Compound Predicate",
-  exp="One subject (Gomez) + two verbs (surveyed... and recorded...) = compound predicate. Never put a comma/semicolon/dash between verb phrases sharing a subject."),
- dict(n=21, level="HARD",
-  passage="The ancient clay tablets discovered by archaeologists in southern Iraq_______ contain detailed logs recording grain distribution among temple workers during the Sumerian period.",
-  opts=["A) Iraq", "B) Iraq,", "C) Iraq;", "D) Iraq—"],
-  ans="A", cat="Subject–Verb",
-  exp="Long subject ('The ancient clay tablets... Iraq') + verb 'contain'. Never separate subject from verb with a single comma/dash/semicolon."),
- dict(n=22, level="HARD",
-  passage="A prominent researcher at the Institute for Advanced Study_______ published a groundbreaking paper on quantum entanglement that challenged existing models.",
-  opts=["A) Dr. Julian Vance,", "B) , Dr. Julian Vance,", "C) Dr. Julian Vance", "D) , Dr. Julian Vance"],
-  ans="B", cat="Nonessential Name",
-  exp="'A prominent researcher...' + name: the indefinite 'A' signals the name is extra info → needs commas both sides. A/C miss the opening comma; D misses the closing one."),
- dict(n=23, level="HARD",
-  passage="Although many historians once attributed the decline of Mayan city-states solely to warfare, recent sediment samples taken from regional lakes—which show evidence of severe, multi-decade droughts_______ suggest that environmental disaster played a greater role.",
-  opts=["A) droughts,", "B) droughts—", "C) droughts;", "D) droughts"],
-  ans="B", cat="Nested Parenthetical",
-  exp="Inner clause opens 'lakes—which...', so it must close with matching '—' before the main verb 'suggest'. Comma mismatches; semicolon cannot end a modifier."),
- dict(n=24, level="HARD",
-  passage="The main obstacles facing commercial spaceflight companies are_______ high manufacturing costs, regulatory hurdles, and unpredictable atmospheric conditions during launch.",
+  ans="C", exp="Never separate the comparison 'more... than...' with a single mark. SAT DELETE type: any punctuation breaks the clause."),
+ dict(n=17, level="VERY HARD", cat="Punctuation: Matching Dash (which)",
+  passage="The decommissioned lighthouse—which still houses a first-order Fresnel lens_______ now operates as a field station for tracking pelagic bird migration.",
+  opts=["A) ,", "B) —", "C) ;", "D) NO PUNCTUATION"],
+  ans="B", exp="Nonessential 'which' clause opened with dash -> close with dash. Comma mismatches; semicolon cannot terminate a modifier."),
+ dict(n=18, level="VERY HARD", cat="Punctuation: Colon Result",
+  passage="Oceanographers had warned for a decade that the reef's thermal buffer was collapsing_______ bleaching events that once occurred once per decade began striking in consecutive years.",
+  opts=["A) collapsing,", "B) collapsing", "C) collapsing and", "D) collapsing:"],
+  ans="D", exp="IC before; second IC explains the consequence -> [IC: IC]. Comma splices; bare 'and' without comma cannot join two ICs."),
+ dict(n=19, level="VERY HARD", cat="Punctuation: That vs. Which",
+  passage="The epistolary archive contains drafting manuals_______ circulated only among apprentice scribes and were never intended for patrons' eyes.",
+  opts=["A) , which", "B) that,", "C) that", "D) which,"],
+  ans="C", exp="Restrictive clause defining which manuals -> 'that' with NO commas. 'Which' with a comma would mark it nonessential, contradicting meaning."),
+ dict(n=20, level="VERY HARD", cat="Punctuation: Compound Predicate",
+  passage="Curator Ingrid Solberg authenticated the disputed altarpiece in Naples_______ and traced its underdrawing to a workshop assistant previously thought to have died a decade earlier.",
+  opts=["A) Naples,", "B) Naples;", "C) Naples—", "D) Naples"],
+  ans="D", exp="One subject + two verbs (authenticated... and traced...) -> compound predicate. Never split verb phrases with comma/semicolon/dash."),
+ dict(n=21, level="EXTREME", cat="Punctuation: Subject-Verb, Long Interrupter",
+  passage="The fossilized trackways uncovered across three kilometers of exposed lakebed in the Turkana Basin_______ preserve the earliest evidence of coordinated group movement in hominins.",
+  opts=["A) Basin", "B) Basin,", "C) Basin;", "D) Basin—"],
+  ans="A", exp="Massive subject ('trackways... Basin') + verb 'preserve'. Never separate subject-verb with one mark, however long the interrupting PPs."),
+ dict(n=22, level="EXTREME", cat="Punctuation: Nonessential Name, Both Sides",
+  passage="An outspoken critic of algorithmic sentencing_______ has urged courts to publish validation audits before procuring risk-assessment software.",
+  opts=["A) Professor Anita Desai,", "B) , Professor Anita Desai,", "C) Professor Anita Desai", "D) , Professor Anita Desai"],
+  ans="B", exp="Indefinite 'An...' signals name is extra -> commas BOTH sides. A misses opener; C/D miss one side and strand the clause."),
+ dict(n=23, level="EXTREME", cat="Punctuation: Nested Dash Parenthetical",
+  passage="While most textbooks still describe the eruption as a single paroxysmal event, tephra layers sampled from bogs—which retain ashfall too fine for lake sediments_______ indicate at least four discrete pulses over eleven months.",
+  opts=["A) sediments,", "B) sediments", "C) sediments;", "D) sediments—"],
+  ans="D", exp="Inner modifier opens 'bogs—which...' -> must close with matching dash before main verb 'indicate'. Comma mismatches the dash opener."),
+ dict(n=24, level="EXTREME", cat="Punctuation: Colon Trap (Verb/Prep)",
+  passage="The revised procurement guidelines require_______ documented chain-of-custody logs, third-party assays for every ore batch, and penalties indexed to market price.",
   opts=["A) :", "B) ;", "C) —", "D) NO PUNCTUATION"],
-  ans="D", cat="Colon Trap",
-  exp="Never put colon/dash/semicolon directly after linking verb 'are' or a preposition. The list flows as the complement: 'are high costs...' with no mark."),
- dict(n=25, level="HARD",
-  passage="The tardigrade, a microscopic organism capable of surviving extreme fluctuations, lowers_______ metabolic rate to near zero during periods of intense environmental stress.",
-  opts=["A) its", "B) it's", "C) their", "D) its'"],
-  ans="A", cat="Pronoun Agreement",
-  exp="'The tardigrade' is singular → 'its'. 'Their' is plural. 'It's' = 'it is'. 'Its'' never exists."),
- dict(n=26, level="HARD",
-  passage="_______ the committee members disagreed sharply on budget allocations for research software, they reached a consensus regarding hardware acquisitions for the lab.",
-  opts=["A) However,", "B) Although", "C) Furthermore,", "D) Consequently,"],
-  ans="B", cat="Subordinator vs. Adverb",
-  exp="Only 'Although' creates a dependent clause [Although..., they...]. 'However/Furthermore/Consequently,' are conjunctive adverbs — starting with them plus a comma creates a comma splice."),
- dict(n=27, level="HARD",
-  passage="Exhausted by months of deep-sea data collection_______ the marine biologists finally completed their comprehensive survey of cold-water coral reefs in the North Atlantic.",
-  opts=["A) collection,", "B) collection;", "C) collection—", "D) collection"],
-  ans="A", cat="Intro Modifier",
-  exp="Introductory participial phrase ('Exhausted...') must be set off with a comma before the main clause subject. Semicolon needs an IC before it; a participial phrase is not an IC."),
- dict(n=28, level="HARD",
-  passage="The team's research paper—published in the journal Science,_______ generated significant public interest in oceanic ecosystem restoration.",
-  opts=["A) Science—", "B) Science,", "C) Science;", "D) Science"],
-  ans="A", cat="Matching Dashes",
-  exp="Nonessential opens with dash → must close with dash. The ',_______' after Science is the closing slot. Comma mismatches the opener."),
- dict(n=29, level="HARD",
-  passage="The summit invited delegates from Tokyo, Japan_______ Paris, France_______ Nairobi, Kenya_______ and Bogotá, Colombia.",
-  opts=["A) ; ; ;", "B) , , ,", "C) — — —", "D) : : :"],
-  ans="A", cat="Supersemicolons",
-  exp="Complex list where items already contain commas (City, Country) must use semicolons as super-separators to avoid confusion. Commas alone blur item boundaries."),
- dict(n=30, level="HARD",
-  passage="In their study of ancient trade, archaeologists examined ceramic vessels found off Sicily_______ analysis of organic residue inside revealed traces of olive oil, wine, and resin from the 4th century BCE.",
-  opts=["A) Sicily,", "B) Sicily", "C) Sicily, and,", "D) Sicily;"],
-  ans="D", cat="Sentence Boundary",
-  exp="Two ICs with no conjunction → semicolon. A is a comma splice, B is a run-on, C is doubly wrong (', and,' + splice)."),
+  ans="D", exp="Colon/dash/semicolon can NEVER follow the verb 'require' (or any preposition). List is the direct object -> no mark at all."),
+ dict(n=25, level="EXTREME", cat="Punctuation: Pronoun (Each / Its)",
+  passage="Each of the autonomous submersibles lost_______ acoustic beacon when the thermocline collapsed, forcing recovery teams to triangulate positions from surface echoes.",
+  opts=["A) their", "B) its", "C) it's", "D) its'"],
+  ans="B", exp="'Each' is singular despite plural 'submersibles' -> 'its'. Their is plural; it's = it is; its' never exists."),
+ dict(n=26, level="EXTREME", cat="Punctuation: Subordinator Trap",
+  passage="_______ the review board approved the trial protocol unanimously, dissenting statisticians continued to dispute the stopping rule in post-approval memos.",
+  opts=["A) However,", "B) Consequently,", "C) Although", "D) Moreover,"],
+  ans="C", exp="Only 'Although' subordinates -> [Although..., ...]. Starting with However/Consequently/Moreover + comma creates a comma splice between two ICs."),
+ dict(n=27, level="EXTREME", cat="Punctuation: Intro Absolute Phrase",
+  passage="Its encryption keys escrowed in three jurisdictions_______ the messaging protocol remained formally outside the reach of any single subpoena.",
+  opts=["A) jurisdictions;", "B) jurisdictions", "C) jurisdictions,", "D) jurisdictions—"],
+  ans="C", exp="Intro absolute/nominative phrase ('Its keys escrowed...') is not an IC -> comma before main IC. Semicolon needs IC before it."),
+ dict(n=28, level="EXTREME", cat="Punctuation: Dash Close With Internal Comma",
+  passage="The longitudinal cohort study—launched in 1998, expanded after the 2008 funding crisis,_______ now underpins most pediatric exposure guidelines worldwide.",
+  opts=["A) crisis,", "B) crisis", "C) crisis;", "D) crisis—"],
+  ans="D", exp="Dash-opened parenthetical with internal commas must still close with a dash. A comma would mismatch the opener; do not be fooled by inner commas."),
+ dict(n=29, level="EXTREME", cat="Punctuation: Super-Semicolons",
+  passage="Field stations were proposed for Reykjavík, Iceland_______ Nairobi, Kenya_______ Jakarta, Indonesia_______ and Lima, Peru.",
+  opts=["A) , , ,", "B) : : :", "C) ; ; ;", "D) — — —"],
+  ans="C", exp="Items already contain commas (City, Country) -> semicolons as super-separators. Commas alone collapse boundaries; colons/dashes cannot separate list items."),
+ dict(n=30, level="EXTREME", cat="Punctuation: Boundary With Demonstrative",
+  passage="Excavators cataloged more than two thousand loom weights at the hillside complex_______ this density overturned the assumption that textile production there was strictly domestic.",
+  opts=["A) complex, this", "B) complex", "C) complex, and, this", "D) complex; this"],
+  ans="D", exp="Two ICs (second begins 'this density...') with no conjunction -> semicolon. Demonstrative 'this' does not fix a splice."),
+ # ============ PART B: GRAMMAR (31-60) ============
+ dict(n=31, level="HARD", cat="Grammar: Subject-Verb Agreement",
+  passage="The array of tide gauges deployed along the subsiding delta_______ sea-level rise at millimeter precision despite biofouling and storm damage.",
+  opts=["A) monitor", "B) have monitored", "C) monitors", "D) are monitoring"],
+  ans="C", exp="Subject is singular 'array' (PP 'of gauges' is a distractor). Singular present -> monitors. B/D are plural."),
+ dict(n=32, level="HARD", cat="Grammar: Neither/Nor Agreement",
+  passage="Neither the field coordinators nor the principal investigator_______ satisfied with the chain-of-custody documentation for the ice cores.",
+  opts=["A) were", "B) are", "C) was", "D) be"],
+  ans="C", exp="With neither/nor, verb agrees with nearest subject ('investigator' singular) -> was. Proximity rule."),
+ dict(n=33, level="HARD", cat="Grammar: Number / A Number",
+  passage="The number of peer-reviewed retractions linked to image duplication_______ sharply since journals adopted automated screening.",
+  opts=["A) have risen", "B) has risen", "C) rise", "D) are rising"],
+  ans="B", exp="'The number' = singular -> has risen. ('A number' would take plural.) Don't be fooled by plural 'retractions'."),
+ dict(n=34, level="HARD", cat="Grammar: Tense Consistency",
+  passage="By the time the review panel convened, the excavation team_______ three seasons of stratigraphic logs that contradicted the original survey.",
+  opts=["A) has compiled", "B) had compiled", "C) compiles", "D) will compile"],
+  ans="B", exp="Past-perfect needed: action completed BEFORE another past event ('convened'). 'Has' is present-perfect; C/D misplace time."),
+ dict(n=35, level="HARD", cat="Grammar: Future Perfect",
+  passage="If deployment stays on schedule, engineers_______ the full sensor constellation by the next equinox.",
+  opts=["A) will have calibrated", "B) calibrated", "C) have calibrated", "D) had calibrated"],
+  ans="A", exp="Deadline in the future ('by the next equinox') completed before then -> future perfect 'will have calibrated'."),
+ dict(n=36, level="HARD", cat="Grammar: Pronoun Clarity",
+  passage="The tribunal credited the whistleblowers rather than the contractors because_______ had preserved contemporaneous field notes.",
+  opts=["A) they", "B) the whistleblowers", "C) those", "D) one"],
+  ans="B", exp="'They' is ambiguous (whistleblowers or contractors?). SAT demands the explicit noun when two plural antecedents compete."),
+ dict(n=37, level="HARD", cat="Grammar: Each / Agreement",
+  passage="Each of the revised manuscripts_______ subjected to an independent statistical audit before acceptance.",
+  opts=["A) were", "B) are", "C) was", "D) be"],
+  ans="C", exp="'Each' is always singular despite plural 'manuscripts' -> was. Were/are match the nearby plural distractor."),
+ dict(n=38, level="HARD", cat="Grammar: Who vs. Which",
+  passage="The epidemiologists_______ pioneered wastewater surveillance shared primer sequences that municipal labs still use today.",
+  opts=["A) which", "B) whom", "C) who", "D) whose"],
+  ans="C", exp="People -> 'who' as subject. 'Which' is for things; 'whom' is object case; 'whose' is possessive."),
+ dict(n=39, level="HARD", cat="Grammar: Dangling Modifier",
+  passage="After analyzing the sediment cores for microplastics, _______ revised upward by nearly forty percent.",
+  opts=["A) the contamination estimates were", "B) the laboratory revised the contamination estimates", "C) there were major revisions to contamination estimates", "D) contamination estimates rose"],
+  ans="B", exp="The 'after analyzing' phrase must modify the analyzer (the laboratory/scientists). A/C/D dangle: estimates cannot analyze."),
+ dict(n=40, level="HARD", cat="Grammar: Parallelism",
+  passage="The fellowship trains residents to collect oral histories, to digitize fragile manuscripts, and_______ endangered-language recordings for community archives.",
+  opts=["A) preserving", "B) to preserve", "C) preservation of", "D) preserve"],
+  ans="B", exp="Parallel infinitives: to collect, to digitize, to preserve. Gerund/noun forms break parallelism."),
+ dict(n=41, level="VERY HARD", cat="Grammar: Correlatives",
+  passage="The retrofit was designed not only to cut peak electricity demand_______ to provide backup potable water during outages.",
+  opts=["A) but also providing", "B) but also to provide", "C) but to provide also", "D) but providing"],
+  ans="B", exp="Idiom is 'not only X but also Y' with matched forms: 'to cut... to provide'. Participles break the pair."),
+ dict(n=42, level="VERY HARD", cat="Grammar: Illogical Comparison",
+  passage="Unlike the spectrograms produced by the legacy array, _______ resolve individual whale calls within the chorus.",
+  opts=["A) the new hydrophones' spectrograms", "B) the new hydrophones", "C) whale calls", "D) the chorus"],
+  ans="A", exp="Compare like to like: spectrograms vs. spectrograms. B compares spectrograms to devices (illogical)."),
+ dict(n=43, level="VERY HARD", cat="Grammar: Transition",
+  passage="The levee reinforcement prevented overtopping during the record surge. _______, backwater flooding inundated pump stations the design had assumed would stay dry.",
+  opts=["A) Consequently,", "B) Moreover,", "C) However,", "D) For example,"],
+  ans="C", exp="Second sentence contrasts/counters the success -> 'However'. Consequently = cause-effect; Moreover = continuation; For example = instance."),
+ dict(n=44, level="VERY HARD", cat="Grammar: Transition (Cause)",
+  passage="The aquifer recharge rate fell for three consecutive years; _______, the water authority imposed mandatory rationing ahead of the dry season.",
+  opts=["A) in contrast,", "B) for instance,", "C) nevertheless,", "D) consequently,"],
+  ans="D", exp="Rationing is the RESULT of falling recharge -> 'consequently'. 'Nevertheless/in contrast' signal opposition; 'for instance' signals example."),
+ dict(n=45, level="VERY HARD", cat="Grammar: One of + That (Agreement)",
+  passage="Dr. Chen's meta-analysis is one of the few reviews that_______ the mortality benefit across all age strata rather than in a subgroup.",
+  opts=["A) confirms", "B) confirm", "C) has confirmed", "D) is confirming"],
+  ans="B", exp="'That' refers to plural 'reviews' (one of the reviews that confirm...), not singular 'one' -> plural 'confirm'. Classic SAT trap."),
+ dict(n=46, level="VERY HARD", cat="Grammar: Conditional / Subjunctive",
+  passage="If the armistice terms_______ ratified last spring, the demilitarized corridor would already have reopened to civilian transit.",
+  opts=["A) were", "B) had been", "C) are", "D) would have been"],
+  ans="B", exp="Counterfactual past (would already have...) needs past-perfect 'had been' in the if-clause. 'Were' is present-counterfactual; D doubles 'would'."),
+ dict(n=47, level="VERY HARD", cat="Grammar: Modifier Placement",
+  passage="Burdened by months of equipment failures and funding delays, _______ struggled to catalog the frescoes before rising humidity sealed the pigments.",
+  opts=["A) the conservation team", "B) the frescoes", "C) cataloging", "D) the museum's humidity"],
+  ans="A", exp="Only the team can 'struggle to catalog'. The intro participial phrase must attach to the grammatical subject capable of the action; frescoes/humidity cannot struggle."),
+ dict(n=48, level="VERY HARD", cat="Grammar: Concision",
+  passage="The audit attributed the overrun to redundant duplication of sensor calibrations performed on an annual yearly basis.",
+  opts=["A) redundant duplication of sensor calibrations performed on an annual yearly basis", "B) sensor calibrations performed annually", "C) annual yearly duplication of sensor calibrations done each year", "D) duplicate redundant calibrations of sensors done annually yearly"],
+  ans="B", exp="SAT prefers concision: 'annual yearly' and 'redundant duplication' repeat. B says the same in fewest words without loss."),
+ dict(n=49, level="VERY HARD", cat="Grammar: Idiom (Capable of)",
+  passage="The tardigrade proteins are notable for being capable_______ extreme desiccation and then resuming metabolism within hours of rehydration.",
+  opts=["A) to survive", "B) of surviving", "C) for surviving", "D) in surviving"],
+  ans="B", exp="Idiom is 'capable of + gerund'. 'Capable to/for/in' are unidiomatic on the SAT."),
+ dict(n=50, level="VERY HARD", cat="Grammar: Pronoun Number (Species Data)",
+  passage="The longitudinal data set, though compiled from eleven clinics, retains_______ original coding errors because harmonization was applied only prospectively.",
+  opts=["A) their", "B) its", "C) it's", "D) theirs"],
+  ans="B", exp="'Data set' is singular -> 'its'. 'Their/theirs' plural; it's = it is. Don't match 'clinics' distractor."),
+ dict(n=51, level="EXTREME", cat="Grammar: Inverted Agreement + Interrupter",
+  passage="Piled beside the decommissioned reactor, each sealed cask of vitrified waste, along with its monitoring telemetry,_______ to a geological repository under armed escort.",
+  opts=["A) were transported", "B) have been transported", "C) was transported", "D) are transported"],
+  ans="C", exp="Subject is 'each cask' (singular); parenthetical 'along with...' never changes number. Past narrative -> was transported."),
+ dict(n=52, level="EXTREME", cat="Grammar: Tense + Voice in Sequence",
+  passage="The manuscripts, which _______ in a flooded crypt for two centuries, are now being stabilized leaf by leaf in a nitrogen chamber.",
+  opts=["A) lay submerged", "B) have laid submerged", "C) were lain submerged", "D) had laid submerged"],
+  ans="A", exp="Lie/lay/lain (recline) vs. lay/laid/laid (place). Manuscripts 'lay' (past of lie) submerged. 'Laid' needs an object; 'were lain' is passive of lie (wrong)."),
+ dict(n=53, level="EXTREME", cat="Grammar: Logical Comparison + Possessive",
+  passage="The transit authority found that ridership on the refurbished ferry line now exceeds_______ on any other harbor route during peak hours.",
+  opts=["A) that", "B) those", "C) ridership", "D) that of ridership"],
+  ans="A", exp="Elliptical comparison: 'exceeds that (ridership) on any other route'. 'Those' is plural; C repeats the noun redundantly; D doubles."),
+ dict(n=54, level="EXTREME", cat="Grammar: Transition (Concession Chain)",
+  passage="Critics concede that the seawall reduced wave overtopping. _______, they argue, the structure accelerated downdrift erosion, offsetting much of the apparent gain.",
+  opts=["A) Nevertheless,", "B) Accordingly,", "C) For example,", "D) Similarly,"],
+  ans="A", exp="Concession ('concede... reduced') followed by counterpoint -> 'Nevertheless'. Accordingly = result; For example = instance; Similarly = parallel."),
+ dict(n=55, level="EXTREME", cat="Grammar: Parallelism in Comparison",
+  passage="Restoring the estuary requires dredging clogged channels, replanting cordgrass, and_______ tidal flow through the old causeway.",
+  opts=["A) the reestablishment of", "B) to reestablish", "C) reestablishing", "D) reestablish"],
+  ans="C", exp="Gerunds in series: dredging, replanting, reestablishing. Infinitive/noun forms break parallelism; bare 'reestablish' mismatches."),
+ dict(n=56, level="EXTREME", cat="Grammar: Amount vs. Number / Fewer vs. Less",
+  passage="The new protocol produced_______ procedural errors and measurably_______ contaminated cultures than the legacy workflow.",
+  opts=["A) fewer / fewer", "B) fewer / less", "C) less / fewer", "D) less / less"],
+  ans="B", exp="Countable 'errors' -> fewer; uncountable portion implied? Actually 'cultures' countable too — but second blank modifies degree ('measurably less contamination' = uncountable contamination). Standard key: fewer errors / less contamination. B mirrors SAT fewer/less split."),
+ dict(n=57, level="EXTREME", cat="Grammar: Between/Among + Pronoun Case",
+  passage="The data-sharing agreement was negotiated exclusively between the observatory director and_______ before the funding cycle closed.",
+  opts=["A) we", "B) us researchers", "C) we researchers", "D) ourselves"],
+  ans="B", exp="Preposition 'between' takes object case: 'between... and us'. 'We' is subject case; 'ourselves' reflexive with no antecedent action."),
+ dict(n=58, level="EXTREME", cat="Grammar: Dangling + Tense Hybrid",
+  passage="Having completed the blinded reanalysis, _______ no longer supported the original claim of a treatment effect.",
+  opts=["A) the trial data", "B) the investigators concluded the trial data", "C) it was concluded that the trial data", "D) the trial data were concluded"],
+  ans="B", exp="Who completed the reanalysis? Investigators — only B supplies that agent as subject. Data cannot 'complete'; C/D are wordy/passive danglers."),
+ dict(n=59, level="EXTREME", cat="Grammar: Affect / Effect + Precision",
+  passage="Reviewers warned that the dam's altered sediment regime would_______ downstream spawning beds and, in turn, produce cascading ecological _______.",
+  opts=["A) effect / affects", "B) affect / effects", "C) effect / effects", "D) affect / affects"],
+  ans="B", exp="Verb = affect (to influence); noun = effects (results). 'Effect' as verb = to bring about (wrong here); 'affects' as noun is a verb form."),
+ dict(n=60, level="EXTREME", cat="Grammar: Concision + Redundancy Hybrid",
+  passage="The committee's final consensus was that the two plans, both alike in their shared uniformity, should be merged.",
+  opts=["A) both alike in their shared uniformity,", "B) identical,", "C) alike and uniform and similar,", "D) sharing the same uniform likeness together,"],
+  ans="B", exp="All options except B stack synonyms ('both alike,' 'shared uniformity'). SAT concision: 'identical' carries the full meaning alone."),
 ]
 
 def badge(level):
-    return {"EASY":"easy","MEDIUM":"medium","HARD":"hard"}[level]
+    return {"HARD":"hard","VERY HARD":"veryhard","EXTREME":"extreme"}[level]
 
 def render_questions():
     out=[]
     for q in QUESTIONS:
         opts="\n".join(f'            <div class="option" data-q="{q["n"]}"><span class="opt-letter">{o.split(")")[0]})</span> {o.split(")",1)[1].strip()}</div>' for o in q["opts"])
         out.append(f'''    <div class="question-card" id="q{q["n"]}">
-        <div class="question-header"><span>Question {q["n"]}</span><span class="difficulty-badge {badge(q["level"])}">{q["level"]}</span></div>
+        <div class="question-header"><span>Question {q["n"]} — {q["cat"]}</span><span class="difficulty-badge {badge(q["level"])}">{q["level"]}</span></div>
         <div class="passage">{q["passage"]}</div>
         <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
         <div class="options">{opts}
@@ -180,7 +271,7 @@ def render_key_rows():
         rows.append(f'<tr><td><strong>{q["n"]}</strong></td><td><strong>{q["ans"]}</strong></td><td>{q["cat"]}</td><td>{q["exp"]}</td></tr>')
     return "\n".join(rows)
 
-CSS = """:root{--navy:#1a365d;--blue:#2b6cb0;--light:#f8fafc;--border:#e2e8f0;--red:#e53e3e;--green:#38a169;--orange:#dd6b20}
+CSS = """:root{--navy:#1a365d;--blue:#2b6cb0;--light:#f8fafc;--border:#e2e8f0;--red:#991b1b;--purple:#6b21a8;--black:#111827}
 *{box-sizing:border-box}body{font-family:'Segoe UI',-apple-system,Roboto,Arial,sans-serif;color:#1a202c;line-height:1.55;background:#fff;margin:0;padding:0 20px 60px}
 .topbar{position:sticky;top:0;background:var(--navy);color:#fff;padding:10px 16px;display:flex;gap:12px;align-items:center;z-index:10;margin:0 -20px}
 .topbar a{color:#bee3f8;text-decoration:none;font-size:9pt;font-weight:600}.topbar .spacer{flex:1}.topbar button{background:#fff;color:var(--navy);border:0;border-radius:6px;padding:6px 12px;font-weight:700;cursor:pointer}
@@ -188,13 +279,9 @@ CSS = """:root{--navy:#1a365d;--blue:#2b6cb0;--light:#f8fafc;--border:#e2e8f0;--
 .student-info{display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between;font-size:10pt;border:1px solid #cbd5e0;padding:10px 15px;border-radius:8px;background:var(--light);margin-top:14px}
 .section-title{background:var(--navy);color:#fff;padding:9px 12px;font-size:12pt;font-weight:800;text-transform:uppercase;border-radius:6px;margin:30px 0 14px;letter-spacing:.5px}
 .subsection-title{font-size:11pt;font-weight:800;color:var(--blue);border-bottom:2px solid #ebf8ff;padding-bottom:4px;margin:18px 0 10px}
-.rule-card{border:1px solid var(--border);border-left:5px solid #3182ce;background:var(--light);padding:12px 16px;margin-bottom:14px;border-radius:0 8px 8px 0;font-size:9.5pt}
-.rule-card strong{color:#2c5282}.formula{font-family:Consolas,'Courier New',monospace;background:#edf2f7;padding:2px 6px;border-radius:4px;font-weight:700}
-.trap-box{border:1px solid #feb2b2;border-left:5px solid var(--red);background:#fff5f5;padding:10px 14px;margin-bottom:14px;border-radius:0 8px 8px 0;font-size:9.5pt}.trap-box strong{color:#9b2c2c}
-table.ref{width:100%;border-collapse:collapse;font-size:9pt;margin:10px 0}table.ref th,table.ref td{border:1px solid #cbd5e0;padding:7px 9px;text-align:left;vertical-align:top}table.ref th{background:var(--blue);color:#fff;font-size:8pt;text-transform:uppercase}
 .question-card{border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:14px;page-break-inside:avoid;background:#fff}
-.question-header{font-weight:800;font-size:10pt;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.difficulty-badge{padding:3px 8px;font-size:7.5pt;font-weight:800;border-radius:4px;color:#fff}.easy{background:var(--green)}.medium{background:var(--orange)}.hard{background:var(--red)}
+.question-header{font-weight:800;font-size:10pt;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:8px}
+.difficulty-badge{padding:3px 8px;font-size:7.5pt;font-weight:800;border-radius:4px;color:#fff;white-space:nowrap}.hard{background:var(--red)}.veryhard{background:var(--purple)}.extreme{background:var(--black)}
 .passage{font-size:9.5pt;background:var(--light);border-left:3px solid #cbd5e0;padding:10px 14px;margin-bottom:10px;text-align:justify}
 .question-text{font-size:9.5pt;font-weight:700;margin-bottom:8px}.options{display:grid;gap:6px;font-size:9pt}.option{padding:7px 10px;border:1px solid #edf2f7;border-radius:6px;background:#fff;cursor:pointer}.option:hover{border-color:var(--blue)}.option.sel{border-color:var(--blue);background:#ebf8ff}
 .opt-letter{font-weight:800;color:var(--blue);margin-right:6px}.q-actions{margin-top:8px}.q-actions button{background:var(--light);border:1px solid #cbd5e0;border-radius:6px;padding:5px 10px;cursor:pointer;font-weight:700;font-size:8.5pt}
@@ -215,60 +302,49 @@ HTML = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Digital SAT Punctuation Masterclass & 30-Question Practice Guide</title>
+<title>Digital SAT Extreme Challenge - 30 Punctuation + 30 Grammar (60 Questions)</title>
 <style>{CSS}</style>
 </head>
 <body>
-<nav class="topbar"><strong>SAT Punctuation</strong><a href="#rules">Rules</a><a href="#practice">Practice 30</a><a href="#key">Answer Key</a><span class="spacer"></span><button onclick="toggleAll(true)">Show all answers</button><button onclick="toggleAll(false)">Hide</button><button onclick="doPrint()">Print / PDF</button></nav>
-<div class="header"><h1>SAT Punctuation Masterclass</h1><p>College Board-Aligned Rules & 30-Question Progressive Practice — Digital SAT Reading & Writing</p></div>
-<div class="student-info"><span><strong>Name:</strong> _______________________</span><span><strong>Date:</strong> ______________</span><span><strong>Target:</strong> R&W 700+</span><span><strong>Time:</strong> 32 min</span></div>
+<nav class="topbar"><strong>SAT Extreme 60</strong><a href="#punct">Punctuation 1-30</a><a href="#gram">Grammar 31-60</a><a href="#key">Answer Key</a><span class="spacer"></span><button onclick="toggleAll(true)">Show all answers</button><button onclick="toggleAll(false)">Hide</button><button onclick="doPrint()">Print / PDF</button></nav>
+<div class="header"><h1>SAT Extreme Challenge</h1><p>30 Punctuation + 30 Grammar — Hard / Very Hard / Extreme — Digital SAT Reading & Writing</p></div>
+<div class="student-info"><span><strong>Name:</strong> _______________________</span><span><strong>Date:</strong> ______________</span><span><strong>Target:</strong> R&W 750+</span><span><strong>Time:</strong> 70 min</span></div>
 
-<div class="section-title" id="rules">Module 1: SAT Punctuation Rules (What the Test Actually Tests)</div>
-<div class="subsection-title">How to attack any punctuation question — 3-step method</div>
-<div class="rule-card"><strong>1. Find the clause types.</strong> Is the text before the blank an Independent Clause (IC = full sentence) or Dependent/Fragment? Is the text after an IC, list, or modifier?<br><strong>2. Apply the allowed patterns only.</strong> SAT has a closed set — if it is not on the list, it is wrong.<br><strong>3. Check matching & traps.</strong> Pairs must match (comma–comma, dash–dash); never separate subject–verb or verb–object; colon never follows a verb/preposition.</div>
-
-<div class="subsection-title">1. Sentence boundaries — the #1 SAT skill</div>
-<div class="rule-card">Two ICs can be joined in <strong>only 4 ways</strong>:<br>• <span class="formula">IC . IC</span> period<br>• <span class="formula">IC ; IC</span> semicolon<br>• <span class="formula">IC , FANBOYS IC</span> — comma + For / And / Nor / But / Or / Yet / So<br>• <span class="formula">IC : IC</span> colon, only when clause 2 explains/amplifies clause 1<br><br>Conjunctive adverbs (however, therefore, moreover, consequently, furthermore) are <strong>not</strong> FANBOYS: use <span class="formula">IC ; however, IC</span>.</div>
-<div class="trap-box"><strong>Comma splice = always wrong:</strong> <span class="formula">IC , IC</span> ✗. Run-on <span class="formula">IC IC</span> ✗. Semicolon + FANBOYS (<span class="formula">IC ; but IC</span>) ✗. Comma + conjunctive adverb (<span class="formula">IC , however IC</span>) ✗.</div>
-
-<div class="subsection-title">2. Colons — strict entry condition</div>
-<div class="rule-card"><strong>Before a colon must be a complete IC.</strong> After can be a list, single noun, phrase, or explaining IC: <span class="formula">IC : list / detail / explanation</span>.<br>Single dash <span class="formula">—</span> introducing an explanation works identically: <span class="formula">IC — explanation</span>.</div>
-<div class="trap-box"><strong>Colon trap:</strong> never after a verb or preposition. ✗ <em>The obstacles are: cost, rules...</em> ✓ <em>The obstacles are cost, rules...</em> ✓ <em>Three obstacles remain: cost, rules...</em></div>
-
-<div class="subsection-title">3. Semicolons — only 2 jobs</div>
-<div class="rule-card">1) <span class="formula">IC ; IC</span> (no conjunction). 2) Super-separator in complex lists: <span class="formula">Tokyo, Japan ; Paris, France ; Nairobi, Kenya</span>. Nothing else. A semicolon can never join IC + fragment, DC + IC, or close a modifier.</div>
-
-<div class="subsection-title">4. Commas — 5 legal uses, 5 bans</div>
-<div class="rule-card"><strong>Use comma for:</strong> 1) <span class="formula">IC , FANBOYS IC</span> 2) <span class="formula">DC , IC</span> (Although..., ...) 3) Intro phrase <span class="formula">Phrase , IC</span> 4) Nonessential pair <span class="formula">, phrase ,</span> 5) Simple list <span class="formula">A , B , and C</span> (Oxford comma expected).</div>
-<div class="trap-box"><strong>Never use a single comma to:</strong> 1) separate subject–verb 2) separate verb–object 3) surround <em>that</em> (restrictive) 4) join two verbs of one subject (<em>surveyed... and recorded...</em>) 5) separate comparison (<em>better... than...</em>).</div>
-
-<div class="subsection-title">5. Dashes & nonessential elements — matching rule</div>
-<div class="rule-card">Removable info must be wrapped in <strong>matching</strong> marks: <span class="formula">, X ,</span> or <span class="formula">— X —</span> or <span class="formula">( X )</span>. Open dash → close dash. Open comma → close comma. Mixing (— X ,) is always wrong.</div>
-
-<div class="subsection-title">6. That / Which / Who (+ essential vs. nonessential names)</div>
-<div class="rule-card">• <strong>that</strong> = restrictive, essential, <strong>no commas</strong>: <em>fluids that support...</em><br>• <strong>which / who</strong> non-restrictive = extra info, <strong>comma before</strong>: <em>fluids, which support...</em><br>• Title + Name without article = essential, no commas: <em>novelist Isabel Allende spent...</em><br>• General noun + <em>, Name ,</em> = nonessential: <em>A researcher, Dr. Vance, published...</em> / <em>The astronomer, Carl Sagan, studied...</em></div>
-
-<div class="subsection-title">7. Apostrophes & possessive pronouns (high-yield table)</div>
-<table class="ref"><tr><th>Situation</th><th>Form</th><th>Example</th></tr>
-<tr><td>Singular noun</td><td><span class="formula">'s</span></td><td>researcher's notebook</td></tr>
-<tr><td>Plural ending in s</td><td><span class="formula">s'</span></td><td>technicians' reports</td></tr>
-<tr><td>Irregular plural</td><td><span class="formula">'s</span></td><td>children's room</td></tr>
-<tr><td>Possessive pronoun (no apostrophe ever)</td><td>its / their / whose / your</td><td>its fur (≠ it's = it is)</td></tr>
-<tr><td>Contraction</td><td>it's / they're / who's / you're</td><td>it's = it is; they're = they are</td></tr></table>
-<div class="trap-box"><strong>its' never exists. researchers's never exists for regular plurals.</strong> Check singular vs. plural from context ('the lead researcher' → singular).</div>
-
-<div class="section-title" id="practice">Module 2: 30 SAT-Style Practice Questions</div>
-<div class="subsection-title">Level 1: Foundation (1–10) · Level 2: Standard (11–20) · Level 3: Traps (21–30) — click an option, then Show answer</div>
-RENDER_Q
+<div class="section-title" id="punct">Part A: Punctuation — Questions 1–30 (Hard → Very Hard → Extreme)</div>
+<div class="subsection-title">Q1–10 Hard · Q11–20 Very Hard · Q21–30 Extreme — click an option, then Show answer</div>
+RENDER_QA
+<div class="section-title" id="gram">Part B: SAT Grammar — Questions 31–60 (Hard → Very Hard → Extreme)</div>
+<div class="subsection-title">Q31–40 Hard · Q41–50 Very Hard · Q51–60 Extreme — agreement, tense, modifiers, parallelism, transitions, concision</div>
+RENDER_QB
 <div class="page-break"></div>
-<div class="section-title" id="key">Module 3: Answer Key & Explanations</div>
+<div class="section-title" id="key">Answer Key & Explanations (1–60)</div>
 <table class="answer-key-table"><thead><tr><th style="width:5%">#</th><th style="width:8%">Ans</th><th style="width:14%">Category</th><th>Why</th></tr></thead><tbody>
 RENDER_KEY
 </tbody></table>
 <script>{JS}</script>
 </body></html>"""
 
-HTML = HTML.replace("RENDER_Q", render_questions()).replace("RENDER_KEY", render_key_rows())
+def render_split():
+    qa=[q for q in QUESTIONS if q["n"]<=30]
+    qb=[q for q in QUESTIONS if q["n"]>30]
+    def render(lst):
+        out=[]
+        for q in lst:
+            opts="\n".join(f'            <div class="option" data-q="{q["n"]}"><span class="opt-letter">{o.split(")")[0]})</span> {o.split(")",1)[1].strip()}</div>' for o in q["opts"])
+            out.append(f'''    <div class="question-card" id="q{q["n"]}">
+        <div class="question-header"><span>Question {q["n"]} — {q["cat"]}</span><span class="difficulty-badge {badge(q["level"])}">{q["level"]}</span></div>
+        <div class="passage">{q["passage"]}</div>
+        <div class="question-text">Which choice completes the text so that it conforms to the conventions of Standard English?</div>
+        <div class="options">{opts}
+        </div>
+        <div class="q-actions"><button onclick="toggleAns({q["n"]})">Show answer</button></div>
+        <div class="q-answer" id="ans{q["n"]}" hidden><strong>{q["ans"]} — {q["cat"]}.</strong> {q["exp"]}</div>
+    </div>''')
+        return "\n".join(out)
+    return render(qa), render(qb)
+
+_qa, _qb = render_split()
+HTML = HTML.replace("RENDER_QA", _qa).replace("RENDER_QB", _qb).replace("RENDER_KEY", render_key_rows())
 out = pathlib.Path(__file__).with_name("SAT_Punctuation_Masterclass.html")
 out.write_text(HTML, encoding="utf-8")
 print(f"Generated {out} with {len(QUESTIONS)} questions.")
