@@ -1,41 +1,59 @@
-# 500 SAT Words in 20 Days
+# 📚 Exam English Masterclass — SAT & IELTS Study Tools
 
-Master essential SAT vocabulary with this interactive study tool. **25 words per day** across **20 days** — organized, trackable, and effective.
+Interactive, offline-first study workbooks for SAT Reading & Writing and IELTS Writing Task 1.
+No dependencies, no build step — just open the HTML file in any browser.
 
-## Features
+![HTML5](https://img.shields.io/badge/HTML5-single--file-E34F26?logo=html5&logoColor=white)
+![No dependencies](https://img.shields.io/badge/dependencies-zero-brightgreen)
+![Offline](https://img.shields.io/badge/works-offline-blue)
+![Turkish + English](https://img.shields.io/badge/lang-TR%20%2B%20EN-red)
 
-- 500 carefully selected SAT vocabulary words
-- Organized into 20 daily sessions (25 words each)
-- Click any word to reveal its example sentence
-- Mark words as mastered to track your progress
-- Progress bar saves your progress via localStorage
-- Fully responsive dark theme design
-- No dependencies — just open the HTML file
+## 🗂 What's Inside
 
-## How to Use
+| File | What it is |
+|------|------------|
+| `index.html` | **500 SAT Words in 20 Days** — 25 words/day, click-to-reveal sentences, mastery tracking |
+| `Okul/SAT_Punctuation_Masterclass.html` | **SAT Extreme Challenge** — 30 Punctuation + 30 Grammar questions (Hard → Extreme) with answer key |
+| `Okul/IELTS_Writing_Task1_Masterclass.html` | **IELTS Writing Task 1 Masterclass** — 7 chart types × 2 examples = 14 tasks with Band 9 models (see below) |
 
-1. Open `index.html` in any browser
-2. Start with Day 1 and work through each day
-3. Click a word card to see its example sentence
-4. Click the check button to mark a word as mastered
-5. Your progress is saved automatically
+## ⭐ Featured: IELTS Writing Task 1 Masterclass
 
-## Word Categories
+The most complete tool in this repo — everything Task 1 throws at you, twice:
 
-| Days | Level | Topics |
-|------|-------|--------|
-| 1-5 | Foundation | Core vocabulary, basic concepts |
-| 6-10 | Intermediate | Academic and literary terms |
-| 11-15 | Upper Intermediate | Advanced vocabulary, nuanced meanings |
-| 16-20 | Advanced | Complex and sophisticated words |
+- **14 tasks** covering all 7 IELTS chart types × 2: Line, Bar, Pie, Table, Process, Map, Mixed
+- **14 Band 9 model answers** (164–191 words each), color-coded by paragraph: Introduction / Overview / Detail 1 / Detail 2
+- **Authentic exam prompts** + charts, data tables, examiner analysis and "golden phrases" per task
+- **Paraphrase Lab** — 5-question interactive quiz with instant feedback
+- **Examiner scoring guide** — what TA / CC / LR / GRA Band 9 actually requires
+- **20-minute exam simulator** — timer with Plan → Write → Check phases and progress bar
+- **Live word counter** per task with 150-word goal bar, progress saved in `localStorage`
+- **7-day study plan**, vocab bank (6 tabs), Band 9 checklist, dark mode 🌙
+- Fully responsive + print/PDF friendly
 
-## Built With
+## 🚀 How to Use
 
-- HTML5
-- CSS3 (Custom Properties, Grid, Animations)
-- Vanilla JavaScript
-- Google Fonts (Inter + Playfair Display)
+1. Clone or download this repo
+2. Open any `.html` file directly in your browser (Chrome / Edge / Safari)
+3. Study, write in the practice boxes, tick off tasks — progress saves automatically
+4. No internet connection needed after download
 
-## License
+```bash
+git clone https://github.com/Flynntaggart26/sat-vocab.git
+cd sat-vocab
+# open index.html or Okul/IELTS_Writing_Task1_Masterclass.html
+```
+
+## 🛠 Built With
+
+- HTML5 + CSS3 (Custom Properties, Grid, Flexbox, Animations)
+- Vanilla JavaScript (timer, quiz, word counters, `localStorage`, dark mode)
+- Zero dependencies — every tool is a single self-contained file
+
+## 🎯 Study Tips
+
+- **IELTS Task 1:** always write an Overview with **no numbers**, select 6–8 key figures (never list everything), and keep tenses consistent (past for past periods, `will be` for future plans, passive for processes)
+- **SAT R&W:** learn words in context (example sentences > word lists), and treat punctuation as sentence-structure logic, not memorization
+
+## 📄 License
 
 Free to use for personal study purposes.
