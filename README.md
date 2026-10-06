@@ -13,8 +13,10 @@ No dependencies, no build step — just open the HTML file in any browser.
 | File | What it is |
 |------|------------|
 | `index.html` | **500 SAT Words in 20 Days** — 25 words/day, click-to-reveal sentences, mastery tracking |
-| `Okul/SAT_Punctuation_Masterclass.html` | **SAT Extreme Challenge** — 30 Punctuation + 30 Grammar questions (Hard → Extreme) with answer key |
-| `Okul/IELTS_Writing_Task1_Masterclass.html` | **IELTS Writing Task 1 Masterclass** — 7 chart types × 2 examples = 14 tasks with Band 9 models (see below) |
+
+> 📦 The bigger workbooks have moved to their own repos (with live sites):
+> - ✍️ [ielts-writing-task1-masterclass](https://github.com/Flynntaggart26/ielts-writing-task1-masterclass) — 14 Task 1 tasks + Band 9 models — [live site](https://flynntaggart26.github.io/ielts-writing-task1-masterclass/)
+> - 🎯 [sat-punctuation-masterclass](https://github.com/Flynntaggart26/sat-punctuation-masterclass) — 60Q extreme punctuation + grammar — [live site](https://flynntaggart26.github.io/sat-punctuation-masterclass/)
 
 ## ⭐ Featured: IELTS Writing Task 1 Masterclass
 
